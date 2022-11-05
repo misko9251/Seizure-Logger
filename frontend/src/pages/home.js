@@ -4,6 +4,8 @@ function Home() {
 
   const [awesomeDogs, setAwesomeDogs] = useState([])
 
+  console.log(awesomeDogs)
+
   useEffect(()=>{
     async function fetchData(){
       try {

@@ -7,6 +7,8 @@ function Posts() {
         text: ''
     })
 
+    const [posts, setPosts] = useState({})
+
     // Fetch all of our posts whenever the component mounts
     useEffect(()=>{
         async function fetchData(){
@@ -15,13 +17,13 @@ function Posts() {
               '/myPosts'
             );
             const json = await response.json()
-            setFormData(json)
+            setPosts(json)
           } catch (error) {
             console.log(error)
           }
         }
         fetchData()
-      }, [])
+      }, [posts])
 
     // Update state on change of input
     function onChange(e){
@@ -43,10 +45,8 @@ function Posts() {
         }
         const response = await fetch('/createPost', formInfo)
         const data = await response.json()
-        setFormData(data)
+        setPosts(data)
     }
-
-    console.log(formData)
 
     return (
       <>
@@ -64,6 +64,7 @@ function Posts() {
           </form>
           <div>
               <h2>Seizure Activity Log</h2>
+              {posts.length > 0 ? posts.map((item)=> <h2>{item.text}</h2>) : 'No posts'}
           </div>
       </>
     )
