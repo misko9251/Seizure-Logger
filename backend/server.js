@@ -26,9 +26,21 @@ app.post('/register', async (req, res) => {
     res.status(200).json(user)
 })
 
-app.post('/posts/submit'), async (req, res) => {
-    console.log('hey')
-}
+app.post('/createPost', async (req, res) => {
+    try {
+        const post = await Post.create({
+            text: req.body.text
+        })
+        res.status(200).json(post)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.get('/myPosts', async (req, res) => {
+    const posts = await Post.find()
+    res.status(200).json(posts)
+})
 
 app.get('/getUsers', async (req, res) => {
     const user = await User.find()
