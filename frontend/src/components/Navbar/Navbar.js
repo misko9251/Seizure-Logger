@@ -17,6 +17,9 @@ function Navbar() {
               <li>
                   <Link to="/register">REGISTER</Link>
               </li>
+              <li>
+                  <Link to="/posts">POSTS</Link>
+              </li>
           </ul>
       </nav>
   )

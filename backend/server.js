@@ -3,6 +3,7 @@ const app = express()
 require('dotenv').config({path: './config/.env'});
 const connectDB = require('./config/db')
 const User = require('./models/User')
+const Post = require('./models/Post')
 
 connectDB()
 
@@ -24,6 +25,10 @@ app.post('/register', async (req, res) => {
     })
     res.status(200).json(user)
 })
+
+app.post('/posts/submit'), async (req, res) => {
+    console.log('hey')
+}
 
 app.get('/getUsers', async (req, res) => {
     const user = await User.find()

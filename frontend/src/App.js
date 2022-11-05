@@ -5,6 +5,7 @@ import Home from './pages/home'
 import Contact from './pages/contact'
 import Ourpurpose from './pages/ourpurpose'
 import Register from './pages/register'
+import Posts from './pages/posts'
 import {
   BrowserRouter as Router,
   Route,
@@ -19,6 +20,7 @@ function App() {
       <Navbar />
         <Routes>
           <Route path='/home' element ={<Home />} />
+          <Route path='/posts' element ={<Posts />} />
           <Route path='/about' element={<Ourpurpose />} />
           <Route path='/register' element={<Register />} />
           <Route path='/contact' element={<Contact />} />
