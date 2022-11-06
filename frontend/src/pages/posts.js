@@ -45,8 +45,10 @@ function Posts() {
         }
         const response = await fetch('/createPost', formInfo)
         const data = await response.json()
-        setPosts(data)
+        console.log(data)
+        e.target.reset()
     }
+
 
     return (
       <>
@@ -64,7 +66,7 @@ function Posts() {
           </form>
           <div>
               <h2>Seizure Activity Log</h2>
-              {posts.length > 0 ? posts.map((item)=> <h2>{item.text}</h2>) : 'No posts to show'}
+              {posts.length > 0 ? posts.map((item, index)=> <h2 key={index}>{item.text}</h2>) : 'No posts to show'}
           </div>
       </>
     )
