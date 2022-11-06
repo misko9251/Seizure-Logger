@@ -5,10 +5,15 @@ module.exports = {
     createUser: async (req, res) => {
 
         const {name, username, password, password2} = req.body
-        const errors = []
 
         if(!name || !username || !password || !password2){
-            errors.push('Please fill in all fields.')
+            return res.status(400).json({
+                errors: [
+                    {
+                        message: 'Please fill out all fields.'
+                    }
+                ]
+            })
         }
 
         if(password !== password2){
@@ -35,5 +40,8 @@ module.exports = {
             await newUser.save()
             console.log(newUser)
         } 
+    },
+    loginUser: async (req, res) => {
+        console.log('hey')
     }
 }

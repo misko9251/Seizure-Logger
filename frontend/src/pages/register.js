@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Axios from 'axios'
 
 function Register() {
@@ -11,7 +11,11 @@ function Register() {
   })
   const [loggedUser, setLoggedUser] = useState('')
 
-  console.log(formData)
+  const [errors, setErrors] = useState([])
+
+  useEffect(()=>{
+    
+  }, [errors])
 
   function onChange(e){
     setFormData((prevValue)=>{
@@ -24,14 +28,18 @@ function Register() {
 
   async function registerUser(e) {
     e.preventDefault()
-    const formInfo = {
+    try {
+      const formInfo = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
     }
-    const response = await fetch('/users/registerUser', formInfo)
-    const data = await response.json()
-    console.log(data)
+        const response = await fetch('/users/registerUser', formInfo)
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+      console.log(error.message)
+    }
 }
 
   return (
