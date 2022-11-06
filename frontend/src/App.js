@@ -1,10 +1,10 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
-import Home from './pages/home'
 import Contact from './pages/contact'
 import Ourpurpose from './pages/ourpurpose'
 import Register from './pages/register'
+import Home from './pages/Home'
 import Posts from './pages/posts'
 import {
   BrowserRouter as Router,
@@ -19,13 +19,12 @@ function App() {
       <Router>
       <Navbar />
         <Routes>
-          <Route path='/home' element ={<Home />} />
+          <Route path='/' element ={<Home />} />
           <Route path='/posts' element ={<Posts />} />
           <Route path='/about' element={<Ourpurpose />} />
           <Route path='/register' element={<Register />} />
           <Route path='/contact' element={<Contact />} />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(240, 242, 243);
+    font-family: 'Rubik', sans-serif;
+}
+
+nav{
+    background: rgb(192, 156, 249);
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+nav li{
+    display: inline-block;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.nav-link, .home-page-blurb{
+    color: black;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+}
+
+.register-btn{
+    background-color: rgb(233, 51, 35);
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+}
+
+.header{
+    padding-top: 3rem;
+    background: rgb(192, 156, 249);
+    height: 500px;
+    border-bottom: 2px solid black;;
+}
+
+.header-image{
+    display: flex;
+    justify-content: center;
+}
+
+.header-title-h1{
+    font-size: 100px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+
+}
+
+.home-page-blurb{
+    text-align: center;
+    padding-bottom: 2rem;
+    font-size: 25px;
+    background-color: rgb(240, 242, 243);
+}
+
+.home-page-blurb p{
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 2rem;
+    text-align: left;
+    font-weight: 300;
+}
+
+.home-page-btn-container{
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+.sign-up-btn, .login-btn {
+    border: 1px solid black;
+    padding: 8px 13px;
+    border-radius: 5px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+    background: white;
+}
+
+.sign-up-btn{
+    margin-right: 1rem;
+    background-color: rgb(233, 51, 35);
+    color: white;
+}

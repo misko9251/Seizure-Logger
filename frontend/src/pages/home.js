@@ -1,41 +1,22 @@
-import React, {useEffect, useState} from 'react'
+import Dog from '../images/dog-header.png'
 
-function Home() {
-
-  const [awesomeDogs, setAwesomeDogs] = useState([])
-
-  console.log(awesomeDogs)
-
-  useEffect(()=>{
-    async function fetchData(){
-      try {
-        const response = await fetch(
-          '/home'
-        );
-        const json = await response.json()
-        setAwesomeDogs(json)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    fetchData()
-  }, [])
-
-
-  const pups = awesomeDogs.bestDogs?.map((dog)=> {
-    return(
-      <h1>{dog}</h1>
-    )
-  })
-
+function Header() {
   return (
-    <>
-        <div>Whats up, Awesome Pups?</div>
-        {pups}
-        <h5>Wow those dogs rock</h5>
-    </>
-
+    <header className="header">
+    <h1 className="header-title-h1">Whats up, Epi-Pup?</h1>
+    <div className="header-image">
+        <img  src={Dog} alt="happy dog cartoon"/>
+    </div>
+    <section className="home-page-blurb">
+      <h2>Hey dog! Welcome to your seizure log.</h2>
+      <p>One billion trees worth of paper are thrown away every year in the United States. Keeping a seizure log on paper means you are running the risk of losing important information. Don't take the risk of accidentally losing your log - sign up for a free account and keep a digital copy for both you and your vet!</p>
+    </section>
+    <div className="home-page-btn-container">
+      <button className="sign-up-btn">REGISTER</button>
+      <button className="login-btn">SIGN IN</button>
+    </div>
+  </header>
   )
 }
 
-export default Home
+export default Header

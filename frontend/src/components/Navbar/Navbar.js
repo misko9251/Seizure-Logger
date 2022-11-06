@@ -4,21 +4,23 @@ import {
     Link
   } from "react-router-dom";
 
+
+
 function Navbar() {
   return (
-      <nav>
+      <nav className='navBar'>
           <ul>
               <li>
-                <Link to="/home">HOME</Link>
+                <Link className="nav-link" style={{ textDecoration: 'none' }} to="/">HOME</Link>
               </li>
               <li>
-                  <Link to="/about">OUR PURPOSE</Link>
+                  <Link className="nav-link" style={{ textDecoration: 'none' }} to="/about">OUR PURPOSE</Link>
               </li>
               <li>
-                  <Link to="/register">REGISTER</Link>
+                  <Link className="nav-link" style={{ textDecoration: 'none' }} to="/posts">POSTS</Link>
               </li>
               <li>
-                  <Link to="/posts">POSTS</Link>
+                  <Link className="nav-link register-btn" style={{ textDecoration: 'none' }} to="/register">REGISTER</Link>
               </li>
           </ul>
       </nav>
