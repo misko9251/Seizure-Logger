@@ -1,11 +1,11 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
-import Footer from './components/Footer/Footer'
 import Contact from './pages/contact'
 import Ourpurpose from './pages/ourpurpose'
 import Register from './pages/register'
 import Home from './pages/Home'
 import Posts from './pages/posts'
+import Login from './pages/login'
 import {
   BrowserRouter as Router,
   Route,
@@ -24,6 +24,7 @@ function App() {
           <Route path='/about' element={<Ourpurpose />} />
           <Route path='/register' element={<Register />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </Router>
     </div>

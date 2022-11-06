@@ -20,6 +20,9 @@ function Navbar() {
                   <Link className="nav-link" style={{ textDecoration: 'none' }} to="/posts">POSTS</Link>
               </li>
               <li>
+                  <Link className="nav-link" style={{ textDecoration: 'none' }} to="/login">LOGIN</Link>
+              </li>
+              <li>
                   <Link className="nav-link register-btn" style={{ textDecoration: 'none' }} to="/register">REGISTER</Link>
               </li>
           </ul>
