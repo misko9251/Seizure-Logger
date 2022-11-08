@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import Axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
 
@@ -13,9 +13,12 @@ function Register() {
 
   const [errors, setErrors] = useState([])
 
-  useEffect(()=>{
-    
-  }, [errors])
+  // Navigate to posts after successful login
+  const navigate = useNavigate();
+
+  function redirect(){
+    navigate('/login')
+  }
 
   function onChange(e){
     setFormData((prevValue)=>{
@@ -37,8 +40,9 @@ function Register() {
         const response = await fetch('/users/registerUser', formInfo)
         const data = await response.json()
         console.log(data)
+        redirect()
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
     }
 }
 
