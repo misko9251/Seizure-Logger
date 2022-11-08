@@ -1,31 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useContext} from 'react'
 import {
     BrowserRouter as Router,
     Link
   } from "react-router-dom";
+import { AuthContext } from '../../context/authContext';
 
 
 
 function Navbar() {
 
     // Create state to see if we have a logged in user
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-    // Make a get request to check if we have a logged in user, update state if we do
-    useEffect(()=>{
-        async function fetchData(){
-          try {
-            const response = await fetch(
-              '/getUser'
-            );
-            const json = await response.json()
-            setIsAuthenticated(json)
-          } catch (error) {
-            console.log(error)
-          }
-        }
-        fetchData()
-      }, [])
+    const { isAuthenticated, setAuth } = useContext(AuthContext)
 
       //Logout user
       async function logout(){
@@ -34,7 +19,7 @@ function Navbar() {
             '/users/logout'
           );
           const json = await response.json()
-          setIsAuthenticated(false)
+        //   setIsAuthenticated(false)
         } catch (error) {
           console.log(error)
         }

@@ -81,7 +81,6 @@ app.get('/myPosts', async (req, res) => {
 
 app.get('/getUser', async (req, res) => {
     const isAuthenticated = req.isAuthenticated()
-    console.log(isAuthenticated)
     res.status(200).json(isAuthenticated)
 })
 
