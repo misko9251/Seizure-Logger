@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
-import Axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
+  // Create state for login data
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   })
 
+  // Update state when inputs are filled out
   function onChange(e){
     setFormData((prevValue)=>{
       return {
@@ -17,6 +19,14 @@ function Login() {
     })
   }
 
+  // Navigate to posts after successful login
+  const navigate = useNavigate();
+
+  function redirect(){
+    navigate('/posts')
+  }
+
+  // Login on submit
   async function login(e){
     e.preventDefault()
     try {
@@ -28,12 +38,11 @@ function Login() {
         const response = await fetch('/users/login', formInfo)
         const data = await response.json()
         console.log(data)
+        redirect()
     } catch (error) {
       console.log(error)
     }
   }
-
-
 
   return (
     <>

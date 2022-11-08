@@ -7,7 +7,11 @@ function Posts() {
         text: ''
     })
 
+    // Create state for all seizure logs/posts
     const [posts, setPosts] = useState({})
+
+    // Create state for logged in user
+    const [user, setUser] = useState('')
 
     // Fetch all of our posts whenever the component mounts
     useEffect(()=>{
@@ -17,13 +21,29 @@ function Posts() {
               '/myPosts'
             );
             const json = await response.json()
-            setPosts(json)
+            setPosts(json.posts)
           } catch (error) {
             console.log(error)
           }
         }
         fetchData()
       }, [posts])
+
+      // Fetch our logged in user on render
+      useEffect(()=>{
+        async function fetchData(){
+          try {
+            const response = await fetch(
+              '/myPosts'
+            );
+            const json = await response.json()
+            setUser(json.user)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        fetchData()
+      }, [])
 
     // Update state on change of input
     function onChange(e){
@@ -53,6 +73,7 @@ function Posts() {
     return (
       <>
           <form onSubmit={submitForm}>
+            {user && <h1>Welcome back, {user[0].toUpperCase() + user.slice(1).toLowerCase()}</h1>}
               <label>Seizure Info</label>
               <input 
               type="text"

@@ -75,13 +75,14 @@ app.post('/createPost', async (req, res) => {
 })
 
 app.get('/myPosts', async (req, res) => {
-    const posts = await Post.find()
-    res.status(200).json(posts)
+    const posts = await Post.find({userId: req.user._id})
+    res.status(200).json({posts: posts, user: req.user.username})
 })
 
-app.get('/getUsers', async (req, res) => {
-    const user = await User.find()
-    res.status(200).json(user)
+app.get('/getUser', async (req, res) => {
+    const isAuthenticated = req.isAuthenticated()
+    console.log(isAuthenticated)
+    res.status(200).json(isAuthenticated)
 })
 
 

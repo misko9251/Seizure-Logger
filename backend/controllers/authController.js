@@ -39,9 +39,7 @@ module.exports = {
             })
             await newUser.save()
             console.log(newUser)
+            res.status(200).json({msg: 'User created'})
         } 
-    },
-    loginUser: async (req, res) => {
-        console.log('hey')
     }
 }
