@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from '../context/authContext'
 
 function Login() {
+
+  const {setAuth} = useAuth()
 
   // Create state for login data
   const [formData, setFormData] = useState({
@@ -37,7 +40,7 @@ function Login() {
     }
         const response = await fetch('/users/login', formInfo)
         const data = await response.json()
-        console.log(data)
+        setAuth(true)
         redirect()
     } catch (error) {
       console.log(error)

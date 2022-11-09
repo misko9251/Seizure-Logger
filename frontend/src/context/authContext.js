@@ -1,33 +1,36 @@
-import {createContext, useEffect, useState} from 'react'
+import { createContext, useContext, useEffect, useState } from 'react';
 
-export const AuthContext = createContext()
+export const AuthContext = createContext({
+  auth: null,
+  setAuth: () => {},
+  user: null,
+});
 
-export function AuthContextProvider( {children} ) {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const setAuth = (boolean) => {
-        setIsAuthenticated(boolean)
+export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider = ({ children }) => {
+  const [auth, setAuth] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(()=> {
+    const isAuth = async () => {
+      try {
+        const res = await fetch(
+          '/getUser'
+        );
+        setUser(res)
+      } catch (error) {
+        setUser(null)
+      }
     }
-    async function isAuth(){
-        try {
-          const response = await fetch(
-            '/getUser'
-          );
-          const json = await response.json()
-          setIsAuthenticated(json)
-        } catch (error) {
-          console.log(error)
-        }
-    }
-    useEffect(()=>{
-        isAuth()
-    }, [])
+    isAuth()
+  }, [auth])
 
-    return (
-        <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, setAuth}}>
-            {children}
-        </AuthContext.Provider>
-    )
+  return (
+    <AuthContext.Provider value={{ auth, setAuth, user }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
-}
-
-export default AuthContextProvider;
+export default AuthProvider;
