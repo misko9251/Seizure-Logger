@@ -25,8 +25,12 @@ function Login() {
   // Navigate to posts after successful login
   const navigate = useNavigate();
 
+  // Redirect functions
   function redirect(){
     navigate('/posts')
+  }
+  function redirectToRegister(){
+    navigate('/register')
   }
 
   // Login on submit
@@ -48,25 +52,30 @@ function Login() {
   }
 
   return (
-    <>
-    <form onSubmit={login}>
-        <h2>Login</h2>
-        <input 
-        type='text' 
-        name='username'
-        value={formData.username}
-        placeholder='username'
-        onChange={onChange} 
-        />
-        <input 
-        type='password' 
-        name='password'
-        placeholder='password' 
-        onChange={onChange}
-        />
-        <button>Submit</button>
-    </form>
-    </>
+    <div className="formContainer">
+      <form className="loginForm" onSubmit={login}>
+          <h2 className="loginHeading">Login to continue!</h2>
+          <input
+          className="loginInput" 
+          type='text' 
+          name='username'
+          value={formData.username}
+          placeholder='Username'
+          onChange={onChange} 
+          />
+          <input
+          className="loginInput" 
+          type='password' 
+          name='password'
+          placeholder='Password' 
+          onChange={onChange}
+          />
+          <button className="loginBtn">LOGIN</button>
+          <div>
+            <h2 className="registerRoute">New here? <span onClick={redirectToRegister}>Sign up</span></h2>
+          </div>
+      </form>
+    </div>
   )
 }
 
