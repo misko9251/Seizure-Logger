@@ -1,5 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
+import UnauthNavbar from './components/Navbar/UnauthNavbar';
 import Contact from './pages/contact'
 import Ourpurpose from './pages/ourpurpose'
 import Register from './pages/register'
@@ -11,16 +12,19 @@ import {
   Route,
   Routes
 } from "react-router-dom";
-import {AuthContextProvider} from './context/authContext'
+import { useAuth } from './context/authContext';
 
 
 
 function App() {
+
+  const { auth } = useAuth()
+  console.log(auth)
+
   return (
     <div>
-      <AuthContextProvider>
         <Router>
-            <Navbar />
+            {auth ? <Navbar /> : <UnauthNavbar />}
               <Routes>
                 <Route path='/' element ={<Home />} />
                 <Route path='/posts' element ={<Posts />} />
@@ -30,7 +34,6 @@ function App() {
                 <Route path='/login' element={<Login />} />
               </Routes>
             </Router>
-        </AuthContextProvider>
     </div>
   );
 }
