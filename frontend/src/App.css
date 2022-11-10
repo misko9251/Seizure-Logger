@@ -112,7 +112,7 @@ nav ul{
     background: linear-gradient(#C09CF9, #9198e5);
 }
 
-.loginForm{
+.loginForm, .registerForm{
     padding: 70px 40px;
     height: 400px;
     width: 30%;
@@ -124,13 +124,13 @@ nav ul{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-.loginHeading{
-    font-weight: 300;
+.loginHeading, .registerHeading{
+    font-weight: 400;
     font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-.loginInput, .loginBtn{
+.loginInput, .loginBtn, .registerInput, .registerBtn{
     height: 50px;
     margin: 10px;
     border-radius: 15px;
@@ -138,17 +138,17 @@ nav ul{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
 }
 
-.loginInput::placeholder {
+.loginInput::placeholder, .registerInput::placeholder {
     text-indent: 20px;
     font-weight: 300;
     font-style: italic;
 }
 
-.loginInput[type="text"], .loginInput[type="password"]{
+.loginInput[type="text"], .loginInput[type="password"], .registerInput[type="text"], .registerInput[type="password"]{
     text-indent: 20px;
 }
 
-.loginBtn{
+.loginBtn, .registerBtn{
     cursor: pointer;
     font-weight: 800;
     font-size: 1.3rem;

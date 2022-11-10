@@ -47,49 +47,47 @@ function Register() {
 }
 
   return (
-    <form onSubmit={registerUser}>
+      <div className="formContainer">
+        <form className="registerForm" onSubmit={registerUser}>
+        
+          <h2 className="registerHeading">Register</h2>
+          <input
+          className="registerInput" 
+          type='text'
+          name='name'
+          value={formData.name} 
+          placeholder='Enter your name'
+          onChange={onChange}
+          />
+          <input
+          className="registerInput" 
+          type='text'
+          name='username'
+          value={formData.username} 
+          placeholder='Username'
+          onChange={onChange}
+          />
+          <input
+          className="registerInput" 
+          type='password'
+          name='password'
+          value={formData.password} 
+          placeholder='Password'
+          onChange={onChange}
+          />
+          <input
+          className="registerInput" 
+          type='password'
+          name='password2'
+          value={formData.password2} 
+          placeholder='Confirm password'
+          onChange={onChange}
+          />
 
-      <h2>Register</h2>
+          <button className="registerBtn" type='submit'>Enter</button>
 
-      <label>Name</label>
-      <input 
-      type='text'
-      name='name'
-      value={formData.name} 
-      placeholder='Enter your name'
-      onChange={onChange}
-      />
-
-      <label>Username</label>
-      <input 
-      type='text'
-      name='username'
-      value={formData.username} 
-      placeholder='Username'
-      onChange={onChange}
-      />
-
-      <label>Password</label>
-      <input 
-      type='password'
-      name='password'
-      value={formData.password} 
-      placeholder='Password'
-      onChange={onChange}
-      />
-
-      <label>Confirm Password</label>
-      <input 
-      type='password'
-      name='password2'
-      value={formData.password2} 
-      placeholder='Confirm password'
-      onChange={onChange}
-      />
-
-      <button type='submit'>Enter</button>
-
-    </form>
+        </form>
+      </div>
   )
 }
 
