@@ -27,7 +27,7 @@ function Login() {
 
   // Redirect functions
   function redirect(){
-    navigate('/posts')
+    navigate('/dashboard')
   }
   function redirectToRegister(){
     navigate('/register')

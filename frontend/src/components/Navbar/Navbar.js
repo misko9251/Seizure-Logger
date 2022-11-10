@@ -34,7 +34,7 @@ function Navbar() {
                   <Link className="nav-link" style={{ textDecoration: 'none' }} to="/ourpurpose">OUR PURPOSE</Link>
               </li>
               <li>
-                  <Link className="nav-link" style={{ textDecoration: 'none' }} to="/posts">POSTS</Link>
+                  <Link className="nav-link" style={{ textDecoration: 'none' }} to="/dashboard">DASHBOARD</Link>
               </li>
               <li>
                   <Link onClick={logout} className="nav-link register-btn" style={{ textDecoration: 'none' }}>LOG OUT</Link>

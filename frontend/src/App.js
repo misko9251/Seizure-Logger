@@ -4,7 +4,7 @@ import UnauthNavbar from './components/Navbar/UnauthNavbar';
 import Ourpurpose from './pages/ourpurpose'
 import Register from './pages/register'
 import Home from './pages/home'
-import Posts from './pages/posts'
+import Dashboard from './pages/dashboard'
 import Login from './pages/login'
 import {
   BrowserRouter as Router,
@@ -25,7 +25,7 @@ function App() {
             {localStorage.auth ? <Navbar /> : <UnauthNavbar />}
               <Routes>
                 <Route path='/' element ={<Home />} />
-                <Route path='/posts' element ={<Posts />} />
+                <Route path='/dashboard' element ={<Dashboard />} />
                 <Route path='/about' element={<Ourpurpose />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
