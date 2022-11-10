@@ -18,6 +18,7 @@ function Navbar() {
           );
           const json = await response.json()
           setAuth(false)
+          localStorage.clear();
         } catch (error) {
           console.log(error)
         }
@@ -30,7 +31,7 @@ function Navbar() {
                 <Link className="nav-link" style={{ textDecoration: 'none' }} to="/">HOME</Link>
               </li>
               <li>
-                  <Link className="nav-link" style={{ textDecoration: 'none' }} to="/about">OUR PURPOSE</Link>
+                  <Link className="nav-link" style={{ textDecoration: 'none' }} to="/ourpurpose">OUR PURPOSE</Link>
               </li>
               <li>
                   <Link className="nav-link" style={{ textDecoration: 'none' }} to="/posts">POSTS</Link>

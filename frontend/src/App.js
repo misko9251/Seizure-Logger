@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
         <Router>
-            {auth ? <Navbar /> : <UnauthNavbar />}
+            {localStorage.auth ? <Navbar /> : <UnauthNavbar />}
               <Routes>
                 <Route path='/' element ={<Home />} />
                 <Route path='/posts' element ={<Posts />} />

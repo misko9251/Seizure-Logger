@@ -45,6 +45,7 @@ function Login() {
         const response = await fetch('/users/login', formInfo)
         const data = await response.json()
         setAuth(true)
+        window.localStorage.setItem('auth', true);
         redirect()
     } catch (error) {
       console.log(error)
