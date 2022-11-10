@@ -3,7 +3,7 @@ import Navbar from './components/Navbar/Navbar'
 import UnauthNavbar from './components/Navbar/UnauthNavbar';
 import Ourpurpose from './pages/ourpurpose'
 import Register from './pages/register'
-import Home from './pages/Home'
+import Home from './pages/home'
 import Posts from './pages/posts'
 import Login from './pages/login'
 import {
