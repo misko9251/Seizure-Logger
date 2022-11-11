@@ -130,9 +130,10 @@ nav ul{
     flex-direction: column;
     text-align: center;
     border-radius: 10px;
-    background-color: rgba(230, 230, 244);
+    background-color: rgba(252, 254, 115);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
+
 
 .loginHeading, .registerHeading{
     font-weight: 400;
@@ -240,3 +241,4 @@ nav ul{
         transform: rotate(360deg);
     }
     } 
+
