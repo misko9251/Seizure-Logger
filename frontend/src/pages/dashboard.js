@@ -4,79 +4,9 @@ import Medication from '../components/Medication'
 
 function Dashboard() {
 
-    // Create state for form
-    const [formData, setFormData] = useState({
-        text: ''
-    })
-
-    // Create state for all seizure logs/posts
-    const [posts, setPosts] = useState({})
-
-    // Create state for logged in user
-    const [user, setUser] = useState('')
-
-    // Fetch all of our posts whenever the component mounts
-    useEffect(()=>{
-        async function fetchData(){
-          try {
-            const response = await fetch(
-              '/myPosts'
-            );
-            const json = await response.json()
-            setPosts(json.posts)
-          } catch (error) {
-            console.log(error)
-          }
-        }
-        fetchData()
-      }, [posts])
-
-      // Fetch our logged in user on render
-      useEffect(()=>{
-        async function fetchData(){
-          try {
-            const response = await fetch(
-              '/myPosts'
-            );
-            const json = await response.json()
-            setUser(json.user)
-          } catch (error) {
-            console.log(error)
-          }
-        }
-        fetchData()
-      }, [])
-
-    // Update state on change of input
-    function onChange(e){
-        setFormData((prevValue)=>{
-            return {
-                ...prevValue,
-                [e.target.name]: e.target.value
-            }
-        })
-    }
-
-    // Post to mongoDB on submit
-    async function submitForm(e){
-        e.preventDefault()
-        const formInfo = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(formData)
-        }
-        const response = await fetch('/createPost', formInfo)
-        const data = await response.json()
-        console.log(data)
-        e.target.reset()
-    }
-
-    const [createDog, setCreateDog] = useState(false)
-    const [medication, setMedication] = useState(false)
-
-  // Create <CreateDog /> component asking for dog's name 'Welcome! What is your dog's name? Dont worry, like everything you share with us, we'll keep this private'
-    // Check if user has already created a dog, if FALSE then render CreateDog
-
+    const [createDog, setCreateDog] = useState(null)
+    const [medication, setMedication] = useState(null)
+    
     useEffect(()=>{
       async function fetchData(){
         try {
@@ -90,7 +20,7 @@ function Dashboard() {
         }
       }
       fetchData()
-    }, [createDog])
+    }, [])
 
     useEffect(()=>{
       async function fetchData(){
@@ -105,14 +35,22 @@ function Dashboard() {
         }
       }
       fetchData()
-    }, [medication])
+    }, [])
 
-    if(!createDog){
+    if(createDog === false){
       return <CreateDog />
-    }if(createDog && !medication){
+    }if(createDog === true && medication === false){
       return <Medication />
+    }if(createDog === true && medication === true){
+      return <h1>Hi Matt & Ozzy! Welcome to your Dashboard.</h1>
+    }else{
+      return (
+        <div className="loadingScreen">
+          <span class="loader"></span>
+        </div>
+      )
     }
-    return <h1>Hey</h1>
+    
   }
 
 export default Dashboard

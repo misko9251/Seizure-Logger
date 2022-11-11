@@ -1,7 +1,9 @@
 import React, {useState, useContext} from 'react'
 import {
     BrowserRouter as Router,
-    Link
+    Link,
+    redirect,
+    useNavigate
   } from "react-router-dom";
 import { useAuth } from '../../context/authContext';
 
@@ -9,7 +11,16 @@ import { useAuth } from '../../context/authContext';
 
 function Navbar() {
     // Create state to see if we have a logged in user
-    const {setAuth, user} = useAuth()
+      const {setAuth, user} = useAuth()
+
+        // Navigate to posts after successful login
+      const navigate = useNavigate();
+
+  // Redirect functions
+      function redirect(){
+        navigate('/')
+      }
+
       //Logout user
       async function logout(){
         try {
@@ -19,6 +30,7 @@ function Navbar() {
           const json = await response.json()
           setAuth(false)
           localStorage.clear();
+          redirect()
         } catch (error) {
           console.log(error)
         }

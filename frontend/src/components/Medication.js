@@ -33,31 +33,34 @@ function Medication() {
 
   return (
     <div className="formContainer">
-      <form className="enterDogForm" onSubmit={postMedication}>
+      <form className="enterMedicationForm" onSubmit={postMedication}>
       <h1>Let's start by adding your dog's medication.</h1>
       <p>Does your dog take more than one medication? Don't worry, we can add more in your dashboard on the next page.</p>
-        <input 
+        <input
+        className="medicationInput" 
         type="text"
         name="medicationName"
         placeholder="Your dog's medication"
         value={formData.medicationName}
         onChange={onChange}
         />
-        <input 
+        <input
+        className="medicationInput" 
         type="text"
         name="dosage"
-        placeholder="Dosage"
+        placeholder="Dosage (Example: 120mg)"
         value={formData.dosage}
         onChange={onChange}
         />
-        <input 
+        <input
+        className="medicationInput" 
         type="text"
         name="timesPerDay"
         placeholder="Frequency (Times per day)"
         value={formData.timesPerDay}
         onChange={onChange}
         />
-        <button>Next</button>
+        <button className="nextBtn">NEXT</button>
       </form>
     </div>
   )

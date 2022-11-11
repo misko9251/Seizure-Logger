@@ -26,6 +26,7 @@ function CreateDog() {
     }
         const response = await fetch('/dashboard/enterDog', formInfo)
         const data = await response.json()
+        window.localStorage.setItem('dog', true);
     } catch (error) {
       console.log(error)
     }

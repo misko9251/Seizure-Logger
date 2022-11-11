@@ -9,25 +9,11 @@ export const AuthContext = createContext({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
+  
   const [auth, setAuth] = useState(null);
-  const [user, setUser] = useState(null);
-
-  useEffect(()=> {
-    const isAuth = async () => {
-      try {
-        const res = await fetch(
-          '/getUser'
-        );
-        setUser(res)
-      } catch (error) {
-        setUser(null)
-      }
-    }
-    isAuth()
-  }, [auth])
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, user }}>
+    <AuthContext.Provider value={{ auth, setAuth }}>
       {children}
     </AuthContext.Provider>
   );

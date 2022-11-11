@@ -29,6 +29,7 @@ function Login() {
   function redirect(){
     navigate('/dashboard')
   }
+  
   function redirectToRegister(){
     navigate('/register')
   }

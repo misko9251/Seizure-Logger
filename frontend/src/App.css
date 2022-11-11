@@ -29,7 +29,7 @@ nav ul{
     width: 100%;
 }
 
-.nav-link, .home-page-blurb, .loginInput::placeholder, .dogNameInput::placeholder{
+.nav-link, .home-page-blurb, .loginInput::placeholder, .dogNameInput::placeholder, .medicationInput::placeholder{
     color: black;
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
@@ -117,7 +117,12 @@ nav ul{
     background: linear-gradient(#C09CF9, #9198e5);
 }
 
-.loginForm, .registerForm, .enterDogForm{
+.loadingScreen{
+    background: linear-gradient(#C09CF9, #9198e5);
+    height: 100vh;
+}
+
+.loginForm, .registerForm, .enterDogForm, .enterMedicationForm{
     padding: 70px 40px;
     height: 400px;
     width: 30%;
@@ -135,7 +140,7 @@ nav ul{
     margin-bottom: 10px;
 }
 
-.loginInput, .loginBtn, .registerInput, .registerBtn, .dogNameInput, .nextBtn{
+.loginInput, .loginBtn, .registerInput, .registerBtn, .dogNameInput, .nextBtn, .medicationInput{
     height: 50px;
     margin: 10px;
     border-radius: 15px;
@@ -179,30 +184,59 @@ nav ul{
 
 /* Enter dog page from Dashboard */
 
-.enterDogForm{
+.enterDogForm, .enterMedicationForm{
     height: 300px;
     width: 60%;
     text-align: left;
     background-color: rgb(104, 218, 150);
 }
 
-.enterDogForm p{
+.enterDogForm p, .enterMedicationForm p{
     margin: 15px 0px;
 }
 
-.enterDogForm p{
-    margin: 15px 0px;
-}
 
-.dogNameInput::placeholder{
+.dogNameInput::placeholder, .medicationInput::placeholder{
     text-indent: 20px;
     color: white;
 }
 
-.dogNameInput{
+.dogNameInput, .medicationInput{
     text-indent: 20px;
     background-color: #333333;
     border-radius: 5px;
     border-bottom: 4px solid white;
     color: white;
 }
+
+.enterMedicationForm{
+    height: 400px;
+}
+
+/* Loader */
+
+.loadingScreen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
