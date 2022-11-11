@@ -37,7 +37,7 @@ function Navbar() {
                   <Link className="nav-link" style={{ textDecoration: 'none' }} to="/dashboard">DASHBOARD</Link>
               </li>
               <li>
-                  <Link onClick={logout} className="nav-link register-btn" style={{ textDecoration: 'none' }}>LOG OUT</Link>
+                  <Link onClick={logout} className="nav-link logout-btn" style={{ textDecoration: 'none' }}>LOG OUT</Link>
               </li>            
           </ul>
       </nav>

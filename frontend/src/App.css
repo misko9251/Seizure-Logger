@@ -29,18 +29,23 @@ nav ul{
     width: 100%;
 }
 
-.nav-link, .home-page-blurb, .loginInput::placeholder{
+.nav-link, .home-page-blurb, .loginInput::placeholder, .dogNameInput::placeholder{
     color: black;
     font-family: 'Rubik', sans-serif;
     font-weight: 300;
 }
 
-.register-btn{
+.register-btn, .logout-btn{
     background-color: rgb(233, 51, 35);
     border: 1px solid black;
     padding: 10px;
     border-radius: 8px;
     color: white;
+}
+
+.logout-btn{
+    background-color: rgb(104, 218, 150);
+    color: black;
 }
 
 .header{
@@ -112,7 +117,7 @@ nav ul{
     background: linear-gradient(#C09CF9, #9198e5);
 }
 
-.loginForm, .registerForm{
+.loginForm, .registerForm, .enterDogForm{
     padding: 70px 40px;
     height: 400px;
     width: 30%;
@@ -130,7 +135,7 @@ nav ul{
     margin-bottom: 10px;
 }
 
-.loginInput, .loginBtn, .registerInput, .registerBtn{
+.loginInput, .loginBtn, .registerInput, .registerBtn, .dogNameInput, .nextBtn{
     height: 50px;
     margin: 10px;
     border-radius: 15px;
@@ -138,7 +143,7 @@ nav ul{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
 }
 
-.loginInput::placeholder, .registerInput::placeholder {
+.loginInput::placeholder, .registerInput::placeholder{
     text-indent: 20px;
     font-weight: 300;
     font-style: italic;
@@ -148,7 +153,7 @@ nav ul{
     text-indent: 20px;
 }
 
-.loginBtn, .registerBtn{
+.loginBtn, .registerBtn, .nextBtn{
     cursor: pointer;
     font-weight: 800;
     font-size: 1.3rem;
@@ -157,7 +162,7 @@ nav ul{
     background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
 }
 
-.loginBtn:hover{
+.loginBtn:hover, .nextBtn:hover{
     background-image: linear-gradient(62deg, #80b3e6 0%, #c5aadf 100%);
 }
 
@@ -172,3 +177,32 @@ nav ul{
     cursor: pointer;
 }
 
+/* Enter dog page from Dashboard */
+
+.enterDogForm{
+    height: 300px;
+    width: 60%;
+    text-align: left;
+    background-color: rgb(104, 218, 150);
+}
+
+.enterDogForm p{
+    margin: 15px 0px;
+}
+
+.enterDogForm p{
+    margin: 15px 0px;
+}
+
+.dogNameInput::placeholder{
+    text-indent: 20px;
+    color: white;
+}
+
+.dogNameInput{
+    text-indent: 20px;
+    background-color: #333333;
+    border-radius: 5px;
+    border-bottom: 4px solid white;
+    color: white;
+}

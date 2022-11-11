@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
+import CreateDog from '../components/CreateDog'
+import Medication from '../components/Medication'
 
-function Posts() {
+function Dashboard() {
 
     // Create state for form
     const [formData, setFormData] = useState({
@@ -69,28 +71,48 @@ function Posts() {
         e.target.reset()
     }
 
+    const [createDog, setCreateDog] = useState(false)
+    const [medication, setMedication] = useState(false)
 
-    return (
-      <>
-          <form onSubmit={submitForm}>
-            {user && <h1>Welcome back, {user[0].toUpperCase() + user.slice(1).toLowerCase()}</h1>}
-              <label>Seizure Info</label>
-              <input 
-              type="text"
-              id="text"
-              name="text"
-              value={formData.email}
-              placeholder="Enter Seizure Information"
-              onChange={onChange}
-              />
-              <button type="submit">Post</button>
-          </form>
-          <div>
-              <h2>Seizure Activity Log</h2>
-              {posts.length > 0 ? posts.map((item, index)=> <h2 className="seizure-post-container" key={index}>{item.text}</h2>) : 'No posts to show'}
-          </div>
-      </>
-    )
-}
+  // Create <CreateDog /> component asking for dog's name 'Welcome! What is your dog's name? Dont worry, like everything you share with us, we'll keep this private'
+    // Check if user has already created a dog, if FALSE then render CreateDog
 
-export default Posts
+    useEffect(()=>{
+      async function fetchData(){
+        try {
+          const response = await fetch(
+            '/dashboard/getDog'
+          );
+          const json = await response.json()
+          json.dog.length > 0 ? setCreateDog(true) : setCreateDog(false)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      fetchData()
+    }, [createDog])
+
+    useEffect(()=>{
+      async function fetchData(){
+        try {
+          const response = await fetch(
+            '/dashboard/getFirstMedication'
+          );
+          const json = await response.json()
+          json.medication.length > 0 ? setMedication(true) : setMedication(false)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      fetchData()
+    }, [medication])
+
+    if(!createDog){
+      return <CreateDog />
+    }if(createDog && !medication){
+      return <Medication />
+    }
+    return <h1>Hey</h1>
+  }
+
+export default Dashboard

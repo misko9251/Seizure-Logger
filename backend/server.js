@@ -15,6 +15,7 @@ const User = require('./models/User')
 const Post = require('./models/Post')
 
 const authRoutes = require('./routes/authRoutes')
+const dashboardRoutes = require('./routes/dashboardRoutes')
 
 require('./config/passport')(passport)
 
@@ -49,42 +50,7 @@ app.use(passport.session())
 
 // Authentication routes
 app.use('/users', authRoutes)
-
-
-
-// Routes below will be moved into their own route/controller folders
-
-app.post('/register', async (req, res) => {
-    const user = await User.create({
-        username: req.body.username,
-        password: req.body.password
-    })
-    res.status(200).json(user)
-})
-
-app.post('/createPost', async (req, res) => {
-    try {
-        const post = await Post.create({
-            text: req.body.text,
-            userId: req.user._id
-        })
-        res.status(200).json(post)
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-app.get('/myPosts', async (req, res) => {
-    const posts = await Post.find({userId: req.user._id})
-    res.status(200).json({posts: posts, user: req.user.username})
-})
-
-app.get('/getUser', async (req, res) => {
-    const isAuthenticated = req.isAuthenticated()
-    res.status(200).json(isAuthenticated)
-})
-
-
+app.use('/dashboard', dashboardRoutes)
 
 app.listen(process.env.PORT,  () =>{
     console.log(`${process.env.PORT}`)

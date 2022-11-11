@@ -68,6 +68,7 @@ function Login() {
           className="loginInput" 
           type='password' 
           name='password'
+          value={formData.password}
           placeholder='Password' 
           onChange={onChange}
           />
