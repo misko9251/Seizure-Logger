@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import CreateDog from '../components/CreateDog'
 import Medication from '../components/Medication'
+import LoadedDashboard from '../components/LoadedDashboard'
 
 function Dashboard() {
 
@@ -42,11 +43,11 @@ function Dashboard() {
     }if(createDog === true && medication === false){
       return <Medication />
     }if(createDog === true && medication === true){
-      return <h1>Hi Matt & Ozzy! Welcome to your Dashboard.</h1>
+      return <LoadedDashboard />
     }else{
       return (
         <div className="loadingScreen">
-          <span class="loader"></span>
+          <span className="loader"></span>
         </div>
       )
     }

@@ -134,6 +134,11 @@ nav ul{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
+.loginForm, .registerForm{
+    border: 2px solid black;
+    
+}
+
 
 .loginHeading, .registerHeading{
     font-weight: 400;
@@ -165,7 +170,8 @@ nav ul{
     font-size: 1.3rem;
     background-color: #8EC5FC;
     color: white;
-    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    /* background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
+    background-color: #5783db;
 }
 
 .loginBtn:hover, .nextBtn:hover{
@@ -183,7 +189,7 @@ nav ul{
     cursor: pointer;
 }
 
-/* Enter dog page from Dashboard */
+/* Enter dog page and enter medication page from Dashboard */
 
 .enterDogForm, .enterMedicationForm{
     height: 300px;
@@ -242,3 +248,71 @@ nav ul{
     }
     } 
 
+/* Loaded Dashboard */
+
+.mainDashboardContainer{
+    height: 100vh;
+    background: linear-gradient(#C09CF9, #9198e5);
+    padding-top: 1.5%;
+}
+
+.dashboardHeader{
+    height: 400px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.dashboardHeader h5{
+    font-weight: 300;
+    margin: 0 0 1% 5%;
+}
+
+.dashboardHeader p{
+    font-weight: 800;
+    margin: 0 0 2% 5%;
+}
+
+.startTrackingBtn{
+    width: 25%;
+    margin: 0 0 1% 5%;
+    height: 35px;
+    color: white;
+    background: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+}
+
+.startTrackingBtn:hover{
+    background: rgb(46, 45, 45);
+}
+
+/* Media Queries */
+
+@media all and (max-width: 1010px){
+    .dashboardHeader{
+        display: flex;
+        justify-content: flex-start;
+        background-position: bottom;
+        font-size: 2rem;
+    }
+    .dashboardHeader h5{
+        margin-top: 5%;
+    }
+}
+
+@media all and (max-width: 650px){
+    .dashboardHeader h5{
+        margin-top: 10%;
+    }
+    .startTrackingBtn{
+        width: 35%;
+    }
+  }
