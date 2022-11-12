@@ -251,7 +251,7 @@ nav ul{
 /* Loaded Dashboard */
 
 .mainDashboardContainer{
-    height: 100vh;
+    /* height: 100vh; */
     background: linear-gradient(#C09CF9, #9198e5);
     padding-top: 1.5%;
 }
@@ -293,6 +293,48 @@ nav ul{
 .startTrackingBtn:hover{
     background: rgb(46, 45, 45);
 }
+
+.dashboardMedicationContainer{
+    display: flex;
+   justify-content: center;
+}
+
+.medicationStatus, .addMedication{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 38.5%;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.medicationStatus{
+    margin-right: 3%;
+}
+
+
+.addOneMed{
+    display: flex;
+    flex-direction: column;
+}
+
+.addOneMed input{
+    height: 30px;
+    margin: 1% 5%;
+    border-bottom:  black;
+}
+
+.addOneMedBtn{
+    width: 50%;
+}
+
 
 /* Media Queries */
 
