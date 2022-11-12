@@ -1,9 +1,33 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Doctor from '../images/dog-medicine.png'
 
 function LoadedDashboard() {
   
   const [needMeds, setNeedMeds] = useState(null)
+  const [currentMeds, setCurrentMeds] = useState([])
+
+  const meds = currentMeds.map((item, index)=>{
+    return(
+        <p key={index}>{item.medicationName} {item.dosage} {item.timesPerDay} time(s) per day.</p>
+    )
+  })
+
+console.log(meds)
+  useEffect(()=>{
+    async function fetchData(){
+      try {
+        const response = await fetch(
+          '/dashboard/getFirstMedication'
+        );
+        const json = await response.json()
+        setCurrentMeds(json.medication)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  }, [currentMeds])
+
 
   function addMeds(){
     setNeedMeds(true)
@@ -55,10 +79,7 @@ function LoadedDashboard() {
         <div className="dashboardMedicationContainer">
         <section className="medicationStatus">
             <h2>Ozzy's Medication(s)</h2>
-            <p>Keppra 200mg 2 time(s) per day.</p>
-            <p>Keppra 200mg 2 time(s) per day.</p>
-            <p>Keppra 200mg 2 time(s) per day.</p>
-            <p>Keppra 200mg 2 time(s) per day.</p>
+            {meds}
         </section>
         <section className="addMedication">
             {needMeds && (

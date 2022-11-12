@@ -41,5 +41,13 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    getAllMedication: async (req, res) => {
+        try {
+            const medication = await Medication.find({userId: req.body._id})
+            res.status(200).json({medication: medication})
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
