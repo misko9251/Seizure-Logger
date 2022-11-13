@@ -34,6 +34,19 @@ module.exports = {
             console.log(error)
         }
     },
+    addMedication: async (req, res) =>{
+        try {
+            const medication = await Medication.create({
+                medicationName: req.body.medicationName,
+                dosage: req.body.dosage,
+                userId: req.user._id,
+                timesPerDay: req.body.timesPerDay
+            })
+            res.status(200).json({medication: medication})
+        } catch (error) {
+            console.log(error)
+        }
+    },
     getFirstMedication: async (req, res) => {
         try {
             const medication = await Medication.find({userId: req.user._id})
@@ -44,7 +57,7 @@ module.exports = {
     },
     getAllMedication: async (req, res) => {
         try {
-            const medication = await Medication.find({userId: req.body._id})
+            const medication = await Medication.find({userId: req.user._id})
             res.status(200).json({medication: medication})
         } catch (error) {
             console.log(error)

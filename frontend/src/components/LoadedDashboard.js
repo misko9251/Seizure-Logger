@@ -3,21 +3,25 @@ import Doctor from '../images/dog-medicine.png'
 
 function LoadedDashboard() {
   
+  // Create state that checks if the user would like to add additional medication to their dashboard, if so, toggle the appropriate form
   const [needMeds, setNeedMeds] = useState(null)
+  // Create state that checks what medication the user currently has registered with their dog
   const [currentMeds, setCurrentMeds] = useState([])
 
+  // Map over the current medication the user has registered, creating an element for each one
   const meds = currentMeds.map((item, index)=>{
     return(
-        <p key={index}>{item.medicationName} {item.dosage} {item.timesPerDay} time(s) per day.</p>
+        <li key={index}>{item.medicationName} {item.dosage} {item.timesPerDay} time(s) per day.</li>
     )
   })
 
-console.log(meds)
+  // Can we remove our updateMedication function by taking advantage of useEffect?
+  // Maybe pass currentMeds as param and then clean up side effects? Will have to look into..
   useEffect(()=>{
     async function fetchData(){
       try {
         const response = await fetch(
-          '/dashboard/getFirstMedication'
+          '/dashboard/getAllMedication'
         );
         const json = await response.json()
         setCurrentMeds(json.medication)
@@ -26,28 +30,14 @@ console.log(meds)
       }
     }
     fetchData()
-  }, [currentMeds])
-
-
-  function addMeds(){
+  }, [])
+  
+  //If the user needs to add meds, the state will update and present the proper component/form
+   function addMeds(){
     setNeedMeds(true)
   }
 
-  const [formData, setFormData] = useState({
-    medicationName: '',
-    dosage: '',
-    timesPerDay: ''
-  }) 
-
-  function onChange(e){
-    setFormData((prevValue)=>{
-      return{
-        ...prevValue,
-        [e.target.name]: e.target.value
-      }
-    })
-  }
-
+  // Function to add medication if user needs to add more
   async function postMedication(e) {
     e.preventDefault()
     try {
@@ -56,12 +46,44 @@ console.log(meds)
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({medicationName: formData.medicationName, dosage: formData.dosage, timesPerDay: formData.timesPerDay})
     }
-        const response = await fetch('/dashboard/addFirstMedication', formInfo)
+        const response = await fetch('/dashboard/addMedication', formInfo)
         const data = await response.json()
+        console.log(data)
         setNeedMeds(null)
+        updateMedication()
     } catch (error) {
       console.log(error)
     }
+  }
+
+  // Medication is updated if user adds medication
+  async function updateMedication(){
+    try {
+      const response = await fetch(
+        '/dashboard/getAllMedication'
+      );
+      const json = await response.json()
+      setCurrentMeds(json.medication)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  // Set state for form to add medication
+  const [formData, setFormData] = useState({
+    medicationName: '',
+    dosage: '',
+    timesPerDay: ''
+  }) 
+
+  // Update our form when inputs change
+  function onChange(e){
+    setFormData((prevValue)=>{
+      return{
+        ...prevValue,
+        [e.target.name]: e.target.value
+      }
+    })
   }
 
   return (
@@ -79,7 +101,9 @@ console.log(meds)
         <div className="dashboardMedicationContainer">
         <section className="medicationStatus">
             <h2>Ozzy's Medication(s)</h2>
-            {meds}
+            <ul>
+                {meds}
+            </ul>
         </section>
         <section className="addMedication">
             {needMeds && (

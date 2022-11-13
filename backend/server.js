@@ -38,11 +38,8 @@ app.use(
         secret: 'keyboardcat', // set the secret key for the session
         resave: false,  // don't save session if unmodified
         saveUninitialized: false,   // don't create session until something stored
-        store: MongoStore.create({
-            client: mongoose.connection.getClient() // get the client from the mongoose connection
-        }),
-    })
-);
+        store: MongoStore.create({mongoUrl:process.env.MONGO_STRING})
+    }))
 
 // Set passport middleware
 app.use(passport.initialize())

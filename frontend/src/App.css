@@ -12,6 +12,10 @@ body{
     font-family: 'Rubik', sans-serif;
 }
 
+li{
+    list-style: none;
+}
+
 nav{
     background: rgb(192, 156, 249);
     height: 70px;
