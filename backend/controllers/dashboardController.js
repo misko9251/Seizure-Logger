@@ -27,7 +27,8 @@ module.exports = {
                 medicationName: req.body.medicationName,
                 dosage: req.body.dosage,
                 userId: req.user._id,
-                timesPerDay: req.body.timesPerDay
+                timesPerDay: req.body.timesPerDay,
+                prescriptionDate: req.body.prescriptionDate
             })
             res.status(200).json({medication: medication})
         } catch (error) {
@@ -40,7 +41,8 @@ module.exports = {
                 medicationName: req.body.medicationName,
                 dosage: req.body.dosage,
                 userId: req.user._id,
-                timesPerDay: req.body.timesPerDay
+                timesPerDay: req.body.timesPerDay,
+                prescriptionDate: req.body.prescriptionDate
             })
             res.status(200).json({medication: medication})
         } catch (error) {

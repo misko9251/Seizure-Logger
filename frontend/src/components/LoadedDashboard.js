@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Doctor from '../images/dog-medicine.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPills } from '@fortawesome/free-solid-svg-icons'
+import Moment from 'react-moment'
 
 function LoadedDashboard() {
   
@@ -9,19 +10,20 @@ function LoadedDashboard() {
   const [needMeds, setNeedMeds] = useState(null)
   // Create state that checks what medication the user currently has registered with their dog
   const [currentMeds, setCurrentMeds] = useState([])
+ 
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
   // Map over the current medication the user has registered, creating an element for each one
   const meds = currentMeds.map((item, index)=>{
     return(
-        <div className="medicineContainer" key={index}>
-            <div className="faPill"><span><FontAwesomeIcon icon={faPills} size='2x' color="lightblue"/></span></div>
-            <div className="medicineDisplay">
-                <h2>{item.medicationName}</h2>
-                <div className="dosageAndFrequency">
-                    <span className="pillDosage">{item.dosage}</span><span className="pillFrequency"> {item.timesPerDay}/day</span>
-                </div>
+        <section key={index} className="medicationSummaryContainer">
+            <div className="faIcon"><FontAwesomeIcon icon={faPills} size='2x'/></div>
+            <div className="medicationSummary">
+                <h3 style={{fontWeight: 400}}>{item.medicationName} {item.dosage}</h3>
+                <h5 style={{fontWeight: 300}}>Prescribed on: <Moment format='MMMM Do, YYYY'>{item.prescriptionDate}</Moment></h5>
+                <h5 style={{fontWeight: 300}}>Take {item.timesPerDay} time(s) per day</h5>
             </div>
-        </div>
+        </section>
     )
   })
   
@@ -55,7 +57,7 @@ function LoadedDashboard() {
       const formInfo = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({medicationName: formData.medicationName, dosage: formData.dosage, timesPerDay: formData.timesPerDay})
+        body: JSON.stringify({medicationName: formData.medicationName, dosage: formData.dosage, timesPerDay: formData.timesPerDay, prescriptionDate: formData.prescriptionDate})
     }
         const response = await fetch('/dashboard/addMedication', formInfo)
         const data = await response.json()
@@ -84,7 +86,8 @@ function LoadedDashboard() {
   const [formData, setFormData] = useState({
     medicationName: '',
     dosage: '',
-    timesPerDay: ''
+    timesPerDay: '',
+    prescriptionDate: ''
   }) 
 
   // Update our form when inputs change
@@ -97,6 +100,14 @@ function LoadedDashboard() {
     })
   }
 
+  // Get day of week
+  const dayOfWeekName = new Date().toLocaleString( // Use this to get the day of the week
+    'default', {weekday: 'long'}
+  );
+  const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const d = new Date();
+  let monthName = month[d.getMonth()];
+
   return (
     <div className="mainDashboardContainer">
         <header className="dashboardHeader" style={{
@@ -105,16 +116,15 @@ function LoadedDashboard() {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'right bottom'
         }}>
-            <h5>Welcome back to your</h5>
-            <p>Seizure tracking manager</p>
+            <h5>Take your epilepsy care to a</h5>
+            <p>powerful new level</p>
             <button className="startTrackingBtn">Start Tracking</button>
         </header>
         <div className="dashboardMedicationContainer">
         <section className="medicationStatus">
-            <h2 style={{marginBottom: '5%'}}>Ozzy's Medication(s)</h2>
-            <ul>
+            {/* <h2 style={{marginTop: '5%', fontWeight: '400', fontSize: '1rem'}}>{dayOfWeekName}, {monthName} {d.getDate()}</h2>
+            <p style={{marginBottom: '5%'}}>{currentMeds.length === 1 ? `${currentMeds.length} Medication` : `${currentMeds.length} Medications`}</p> */}
                 {meds}
-            </ul>
         </section>
         <section className="addMedication">
             {needMeds && (
@@ -143,6 +153,14 @@ function LoadedDashboard() {
                       name="timesPerDay"
                       placeholder="Frequency (Times per day)"
                       value={formData.timesPerDay}
+                      onChange={onChange}
+                      />
+                      <input
+                      className="medicationInput" 
+                      type="date"
+                      name="prescriptionDate"
+                      placeholder="Date Prescribed"
+                      value={formData.prescriptionDate}
                       onChange={onChange}
                       />
                       <button className="addOneMedBtn">Add</button>

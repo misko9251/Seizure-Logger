@@ -13,6 +13,10 @@ const MedicationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    prescriptionDate: {
+        type: Date,
+        required: true
+    },
     timesPerDay: {
         type: String,
         required: true
