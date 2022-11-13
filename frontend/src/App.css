@@ -134,7 +134,7 @@ nav ul{
     flex-direction: column;
     text-align: center;
     border-radius: 10px;
-    background-color: rgba(252, 254, 115);
+    background-color: rgb(247, 209, 218);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -172,10 +172,8 @@ nav ul{
     cursor: pointer;
     font-weight: 800;
     font-size: 1.3rem;
-    background-color: #8EC5FC;
+    background-color: rgb(189, 195, 247);
     color: white;
-    /* background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%); */
-    background-color: #5783db;
 }
 
 .loginBtn:hover, .nextBtn:hover{
@@ -310,12 +308,12 @@ nav ul{
     background-color: rgb(255, 255, 255);
     width: 38.5%;
     text-align: center;
-    padding-top: 5%;
+    padding-top: 2%;
     padding-bottom: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 125px;
+    /* height: 125px; */
 }
 
 .medicationStatus{
@@ -345,6 +343,50 @@ nav ul{
     font-family: 'Rubik';
 }
 
+.medicineContainer{
+    margin: 0 auto;
+    padding: 5% 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 3%;
+    align-items: flex-start;
+    box-shadow: 3px 3px 3px lightgray;
+    border: 1px solid rgb(222, 218, 218);
+}
+
+.medicineDisplay{
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    text-align: left;
+    /* border: 1px solid red; */
+}
+
+.faPill{
+    margin: auto 5%;
+}
+
+.dosageAndFrequency{
+    display: flex;
+}
+
+.pillFrequency, .pillDosage{
+    background-color: rgb(189, 195, 247);
+    border: 1px solid black;
+    display: inline-block;
+    padding: 10%;
+    margin-top: 5%;
+    margin-right: 10%;
+    border-radius: 10px;
+    width: 125px;
+}
+
+.pillDosage{
+    background-color: rgb(247, 209, 218);
+}
+
 
 /* Media Queries */
 
@@ -357,6 +399,29 @@ nav ul{
     }
     .dashboardHeader h5{
         margin-top: 5%;
+    }
+    .dashboardMedicationContainer{
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+    }
+    .medicationStatus, .addMedication{
+        margin-top: 5%;
+        margin-right: 0;
+        margin-bottom: 0;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        width: 80%;
+        text-align: center;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* height: 175px; */
+    }
+    .addMedication{
+        margin-bottom: 3%;
     }
 }
 

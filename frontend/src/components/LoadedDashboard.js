@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Doctor from '../images/dog-medicine.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPills } from '@fortawesome/free-solid-svg-icons'
 
 function LoadedDashboard() {
   
@@ -11,9 +13,18 @@ function LoadedDashboard() {
   // Map over the current medication the user has registered, creating an element for each one
   const meds = currentMeds.map((item, index)=>{
     return(
-        <li key={index}>{item.medicationName} {item.dosage} {item.timesPerDay} time(s) per day.</li>
+        <div className="medicineContainer" key={index}>
+            <div className="faPill"><span><FontAwesomeIcon icon={faPills} size='2x' color="lightblue"/></span></div>
+            <div className="medicineDisplay">
+                <h2>{item.medicationName}</h2>
+                <div className="dosageAndFrequency">
+                    <span className="pillDosage">{item.dosage}</span><span className="pillFrequency"> {item.timesPerDay}/day</span>
+                </div>
+            </div>
+        </div>
     )
   })
+  
 
   // Can we remove our updateMedication function by taking advantage of useEffect?
   // Maybe pass currentMeds as param and then clean up side effects? Will have to look into..
@@ -100,7 +111,7 @@ function LoadedDashboard() {
         </header>
         <div className="dashboardMedicationContainer">
         <section className="medicationStatus">
-            <h2>Ozzy's Medication(s)</h2>
+            <h2 style={{marginBottom: '5%'}}>Ozzy's Medication(s)</h2>
             <ul>
                 {meds}
             </ul>
