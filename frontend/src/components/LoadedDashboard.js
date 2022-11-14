@@ -104,6 +104,22 @@ function LoadedDashboard() {
   const [seizureLog, setSeizureLog] = useState([])
   console.log(seizureLog)
   // Get all of our seizure logs when component renders
+
+  const tableRows = seizureLog.map((item, index)=>{
+    return(
+        <tbody key={index}>
+            <tr>
+                <td><Moment format='MMMM Do, YYYY'>{item.seizureDate}</Moment></td>
+                <td>{item.seizureLength} seconds</td>
+                <td>{item.seizureTime}</td>
+                <td>{item.seizureObservation}</td>
+            </tr>
+        </tbody>
+    )
+  })
+
+
+
   useEffect(()=>{
     async function fetchData(){
       try {
@@ -261,6 +277,19 @@ function LoadedDashboard() {
                 >Hey</textarea>
                 <button>Log Activity</button>
             </form>
+        </section>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Length</th>
+                        <th>Time</th>
+                        <th>Observations</th>
+                    </tr>
+                </thead>
+                {tableRows}
+            </table>
         </section>
     </div>
   )
