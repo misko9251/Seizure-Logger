@@ -81,7 +81,7 @@ function LoadedDashboard() {
       console.log(error)
     }
   }
-  
+
   // Set state for form to add medication
   const [formData, setFormData] = useState({
     medicationName: '',
@@ -102,24 +102,8 @@ function LoadedDashboard() {
 
   // Create state for seizure logs
   const [seizureLog, setSeizureLog] = useState([])
-  console.log(seizureLog)
+  
   // Get all of our seizure logs when component renders
-
-  const tableRows = seizureLog.map((item, index)=>{
-    return(
-        <tbody key={index}>
-            <tr>
-                <td><Moment format='MMMM Do, YYYY'>{item.seizureDate}</Moment></td>
-                <td>{item.seizureLength} seconds</td>
-                <td>{item.seizureTime}</td>
-                <td>{item.seizureObservation}</td>
-            </tr>
-        </tbody>
-    )
-  })
-
-
-
   useEffect(()=>{
     async function fetchData(){
       try {
@@ -134,6 +118,19 @@ function LoadedDashboard() {
     }
     fetchData()
   }, [])
+
+  const tableRows = seizureLog.map((item, index)=>{
+    return(
+        <tbody key={index}>
+            <tr>
+                <td><Moment format='MMMM Do, YYYY'>{item.seizureDate}</Moment></td>
+                <td>{item.seizureLength} seconds</td>
+                <td>{item.seizureTime}</td>
+                <td>{item.seizureObservation}</td>
+            </tr>
+        </tbody>
+    )
+  })
 
   // Create state for form to add seizure information
   const [seizureFormData, setSeizureFormData] = useState({
@@ -153,7 +150,6 @@ function LoadedDashboard() {
     })
   }
 
-  //
   async function postSeizure(e){
     e.preventDefault()
     try {
@@ -165,6 +161,19 @@ function LoadedDashboard() {
         const response = await fetch('/dashboard/addSeizureLog', formInfo)
         const data = await response.json()
         console.log(data)
+        updateSeizureLog()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function updateSeizureLog(){
+    try {
+      const response = await fetch(
+        '/dashboard/getSeizureLogs'
+      );
+      const json = await response.json()
+      setSeizureLog(json.seizures)
     } catch (error) {
       console.log(error)
     }
@@ -274,22 +283,32 @@ function LoadedDashboard() {
                 name="seizureObservation"
                 value={seizureFormData.seizureObservation}
                 onChange={seizureOnChange}
-                >Hey</textarea>
+                ></textarea>
                 <button>Log Activity</button>
             </form>
         </section>
         <section>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Length</th>
-                        <th>Time</th>
-                        <th>Observations</th>
-                    </tr>
-                </thead>
-                {tableRows}
-            </table>
+              {seizureLog.length > 0 && 
+              (
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Length</th>
+                            <th>Time</th>
+                            <th>Observations</th>
+                        </tr>
+                    </thead>
+                            {tableRows}
+                </table>
+                
+              )}
+              {!seizureLog.length && (
+              
+                <h1>No Seizure Activity to Show</h1>
+              
+              )}
         </section>
     </div>
   )

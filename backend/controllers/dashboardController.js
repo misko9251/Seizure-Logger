@@ -68,13 +68,14 @@ module.exports = {
     },
     addSeizureLog: async (req, res) => {
         try {
-            const seizure = await Seizure.create({
+            const seizures = await Seizure.create({
                 userId: req.user._id,
                 seizureDate: req.body.seizureDate,
                 seizureLength: req.body.seizureLength,
                 seizureTime: req.body.seizureTime,
                 seizureObservation: req.body.seizureObservation
             })
+            res.status(200).json({seizures: seizures})
         } catch (error) {
             
         }
