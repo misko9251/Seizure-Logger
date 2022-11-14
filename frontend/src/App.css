@@ -115,10 +115,11 @@ nav ul{
 .formContainer{
     display: flex;
     justify-content: center;
+    align-items: c;
     padding-top: 5%;
-    height: 100vh;
     background: rgb(103, 215, 151);
     background: linear-gradient(#C09CF9, #9198e5);
+    height: 100vh
 }
 
 .loadingScreen{
@@ -129,18 +130,18 @@ nav ul{
 .loginForm, .registerForm, .enterDogForm, .enterMedicationForm{
     padding: 70px 40px;
     height: 400px;
-    width: 30%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     text-align: center;
     border-radius: 10px;
     background-color: rgb(247, 209, 218);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    margin-top: 20%;
 }
 
 .loginForm, .registerForm{
     border: 2px solid black;
-    
 }
 
 
@@ -150,7 +151,7 @@ nav ul{
     margin-bottom: 10px;
 }
 
-.loginInput, .loginBtn, .registerInput, .registerBtn, .dogNameInput, .nextBtn, .medicationInput{
+.loginInput, .loginBtn, .registerInput, .registerBtn, .dogNameInput, .nextBtn, .medicationInput, .dateInput{
     height: 50px;
     margin: 10px;
     border-radius: 15px;
@@ -210,7 +211,7 @@ nav ul{
     color: white;
 }
 
-.dogNameInput, .medicationInput{
+.dogNameInput, .medicationInput, .dateInput{
     text-indent: 20px;
     background-color: #333333;
     border-radius: 5px;
@@ -218,8 +219,17 @@ nav ul{
     color: white;
 }
 
+.dateInput{
+    height: 50px;
+    margin: 10px;
+    text-indent: 10px;
+    color-scheme: dark;
+    padding-right: 10px
+}
+
 .enterMedicationForm{
-    height: 400px;
+    height: 600px;
+    margin-bottom: 50px;
 }
 
 /* Loader */
@@ -255,34 +265,33 @@ nav ul{
 .mainDashboardContainer{
     /* height: 100vh; */
     background: linear-gradient(#C09CF9, #9198e5);
-    padding-top: 1.5%;
 }
 
 .dashboardHeader{
     height: 400px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    border-radius: 10px;
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: 2rem;
+    margin-bottom: 5%;
 }
 
 .dashboardHeader h5{
     font-weight: 300;
-    margin: 0 0 1% 5%;
+    margin: 10% 0 1% 8%;
 }
 
 .dashboardHeader p{
     font-weight: 800;
-    margin: 0 0 2% 5%;
+    margin: 0 0 2% 8%;
 }
 
 .startTrackingBtn{
-    width: 25%;
-    margin: 0 0 1% 5%;
+    width: 30%;
+    margin: 0 0 1% 8%;
     height: 35px;
     color: white;
     background: black;
@@ -298,27 +307,67 @@ nav ul{
 
 .dashboardMedicationContainer{
     display: flex;
-   justify-content: center;
-}
-
-.medicationStatus, .addMedication{
-    margin-top: 3%;
-    margin-bottom: 3%;
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    width: 38.5%;
-    text-align: center;
-    padding-top: 2%;
-    padding-bottom: 5%;
-    display: flex;
     flex-direction: column;
     justify-content: center;
-    /* height: 125px; */
 }
 
-.medicationStatus{
-    margin-right: 3%;
+.medicationSummaryContainer{
+    display: flex;
+    align-items: center;
+    padding: 5%;
+    border-radius: 10px;
+    width: 80%;
+    background: white;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    box-shadow: 5px 5px 3px rgb(108, 107, 107);
 }
+
+.faIcon{
+    display: inline-block;
+    padding: 5%;
+}
+
+.medicationSummary{
+    margin-left: 5%;
+}
+
+.addMedication{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 225px;
+    background: white;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.dashHeader{
+    text-align: center;
+    margin: 3%;
+}
+
+
+.seizureForm{
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgb(104, 218, 150);
+    border-radius: 5px;
+    margin-bottom: 3%;
+}
+
+
+
+
+
+
+
+
 
 
 .addOneMed{
@@ -343,53 +392,33 @@ nav ul{
     font-family: 'Rubik';
 }
 
-.medicineContainer{
-    margin: 0 auto;
-    padding: 5% 0;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    width: 80%;
-    margin-bottom: 3%;
-    align-items: flex-start;
-    box-shadow: 3px 3px 3px lightgray;
-    border: 1px solid rgb(222, 218, 218);
+/* Table */
+
+table{
+    border-collapse: collapse;
+    /* margin: 25px 0; */
+    /* margin: 5%; */
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.medicineDisplay{
-    display: flex;
-    flex-direction: column;
-    flex-direction: column;
+table thead tr {
+    background-color: rgb(104, 218, 150);
+    color: #ffffff;
     text-align: left;
-    /* border: 1px solid red; */
 }
 
-.faPill{
-    margin: auto 5%;
+table td, table th {
+    padding: 12px 15px;
 }
 
-.dosageAndFrequency{
-    display: flex;
+td{
+    background: white;
 }
-
-.pillFrequency, .pillDosage{
-    background-color: rgb(189, 195, 247);
-    border: 1px solid black;
-    display: inline-block;
-    padding: 10%;
-    margin-top: 5%;
-    margin-right: 10%;
-    border-radius: 10px;
-    width: 125px;
-}
-
-.pillDosage{
-    background-color: rgb(247, 209, 218);
-}
-
 
 /* Media Queries */
-
+/* 
 @media all and (max-width: 1010px){
     .dashboardHeader{
         display: flex;
@@ -405,31 +434,16 @@ nav ul{
         flex-direction:column;
         align-items: center;
     }
-    .medicationStatus, .addMedication{
-        margin-top: 5%;
-        margin-right: 0;
-        margin-bottom: 0;
-        border-radius: 10px;
-        background-color: rgb(255, 255, 255);
-        width: 80%;
-        text-align: center;
-        padding-top: 5%;
-        padding-bottom: 5%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        /* height: 175px; */
-    }
     .addMedication{
         margin-bottom: 3%;
     }
 }
 
-@media all and (max-width: 650px){
+@media all and (max-width: 770px){
     .dashboardHeader h5{
         margin-top: 10%;
     }
     .startTrackingBtn{
         width: 35%;
     }
-  }
+  } */

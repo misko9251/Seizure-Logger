@@ -1,26 +1,26 @@
 const mongoose = require('mongoose')
 
-const MedicationSchema = new mongoose.Schema({
-    medicationName: {
+const seizureSchema = new mongoose.Schema({
+    seizureDate: {
         type: String,
         required: true
     },
-    dosage: {
+    seizureLength: {
+        type: String,
+        required: true
+    },
+    seizureTime: {
+        type: String,
+        required: true
+    },
+    seizureObservation: {
         type: String,
         required: true
     },
     userId: {
         type: String,
         required: true
-    },
-    prescriptionDate: {
-        type: Date,
-        required: true
-    },
-    timesPerDay: {
-        type: String,
-        required: true
     }
 })
 
-module.exports = mongoose.model('Medication', MedicationSchema)
+module.exports = mongoose.model('Seizure', seizureSchema)

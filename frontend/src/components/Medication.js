@@ -5,8 +5,11 @@ function Medication() {
   const [formData, setFormData] = useState({
     medicationName: '',
     dosage: '',
-    timesPerDay: ''
+    timesPerDay: '',
+    prescriptionDate: ''
   }) 
+
+  console.log(formData)
 
   function onChange(e){
     setFormData((prevValue)=>{
@@ -22,7 +25,7 @@ function Medication() {
       const formInfo = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({medicationName: formData.medicationName, dosage: formData.dosage, timesPerDay: formData.timesPerDay})
+        body: JSON.stringify({medicationName: formData.medicationName, dosage: formData.dosage, timesPerDay: formData.timesPerDay, prescriptionDate: formData.prescriptionDate})
     }
         const response = await fetch('/dashboard/addFirstMedication', formInfo)
         const data = await response.json()
@@ -58,6 +61,14 @@ function Medication() {
         name="timesPerDay"
         placeholder="Frequency (Times per day)"
         value={formData.timesPerDay}
+        onChange={onChange}
+        />
+        <input
+        className="dateInput" 
+        type="date"
+        name="prescriptionDate"
+        placeholder="Date Prescribed"
+        value={formData.prescriptionDate}
         onChange={onChange}
         />
         <button className="nextBtn">NEXT</button>

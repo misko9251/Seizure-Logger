@@ -1,5 +1,6 @@
 const Dog = require('../models/Dog')
 const Medication = require('../models/Medication')
+const Seizure = require('../models/Seizure')
 
 module.exports = {
     createDog: async (req, res) => {
@@ -27,7 +28,8 @@ module.exports = {
                 medicationName: req.body.medicationName,
                 dosage: req.body.dosage,
                 userId: req.user._id,
-                timesPerDay: req.body.timesPerDay
+                timesPerDay: req.body.timesPerDay,
+                prescriptionDate: req.body.prescriptionDate
             })
             res.status(200).json({medication: medication})
         } catch (error) {
@@ -40,7 +42,8 @@ module.exports = {
                 medicationName: req.body.medicationName,
                 dosage: req.body.dosage,
                 userId: req.user._id,
-                timesPerDay: req.body.timesPerDay
+                timesPerDay: req.body.timesPerDay,
+                prescriptionDate: req.body.prescriptionDate
             })
             res.status(200).json({medication: medication})
         } catch (error) {
@@ -59,6 +62,28 @@ module.exports = {
         try {
             const medication = await Medication.find({userId: req.user._id})
             res.status(200).json({medication: medication})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    addSeizureLog: async (req, res) => {
+        try {
+            const seizures = await Seizure.create({
+                userId: req.user._id,
+                seizureDate: req.body.seizureDate,
+                seizureLength: req.body.seizureLength,
+                seizureTime: req.body.seizureTime,
+                seizureObservation: req.body.seizureObservation
+            })
+            res.status(200).json({seizures: seizures})
+        } catch (error) {
+            
+        }
+    },
+    getSeizureLogs: async (req, res) => {
+        try {
+            const seizures = await Seizure.find({userId: req.user._id})
+            res.status(200).json({seizures: seizures})
         } catch (error) {
             console.log(error)
         }
