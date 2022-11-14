@@ -11,9 +11,6 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db')
 
-const User = require('./models/User')
-const Post = require('./models/Post')
-
 const authRoutes = require('./routes/authRoutes')
 const dashboardRoutes = require('./routes/dashboardRoutes')
 

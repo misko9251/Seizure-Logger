@@ -100,13 +100,59 @@ function LoadedDashboard() {
     })
   }
 
-  // Get day of week
-  const dayOfWeekName = new Date().toLocaleString( // Use this to get the day of the week
-    'default', {weekday: 'long'}
-  );
-  const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  const d = new Date();
-  let monthName = month[d.getMonth()];
+  // Create state for seizure logs
+  const [seizureLog, setSeizureLog] = useState([])
+  console.log(seizureLog)
+  // Get all of our seizure logs when component renders
+  useEffect(()=>{
+    async function fetchData(){
+      try {
+        const response = await fetch(
+          '/dashboard/getSeizureLogs'
+        );
+        const json = await response.json()
+        setSeizureLog(json.seizures)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  // Create state for form to add seizure information
+  const [seizureFormData, setSeizureFormData] = useState({
+    seizureDate: '',
+    seizureLength: '',
+    seizureTime: '',
+    seizureObservation: ''
+  })
+
+  // Update seizure form when values change
+  function seizureOnChange(e){
+    setSeizureFormData((prevValue)=>{
+        return {
+            ...prevValue,
+            [e.target.name]: e.target.value
+        }
+    })
+  }
+
+  //
+  async function postSeizure(e){
+    e.preventDefault()
+    try {
+      const formInfo = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({seizureDate: seizureFormData.seizureDate, seizureLength: seizureFormData.seizureLength, seizureTime: seizureFormData.seizureTime, seizureObservation: seizureFormData.seizureObservation})
+    }
+        const response = await fetch('/dashboard/addSeizureLog', formInfo)
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="mainDashboardContainer">
@@ -122,8 +168,7 @@ function LoadedDashboard() {
         </header>
         <div className="dashboardMedicationContainer">
         <section className="medicationStatus">
-            {/* <h2 style={{marginTop: '5%', fontWeight: '400', fontSize: '1rem'}}>{dayOfWeekName}, {monthName} {d.getDate()}</h2>
-            <p style={{marginBottom: '5%'}}>{currentMeds.length === 1 ? `${currentMeds.length} Medication` : `${currentMeds.length} Medications`}</p> */}
+            <h2 className="dashHeader">Ozzy's Medication</h2>
                 {meds}
         </section>
         <section className="addMedication">
@@ -156,7 +201,7 @@ function LoadedDashboard() {
                       onChange={onChange}
                       />
                       <input
-                      className="medicationInput" 
+                      className="dateInput" 
                       type="date"
                       name="prescriptionDate"
                       placeholder="Date Prescribed"
@@ -176,6 +221,47 @@ function LoadedDashboard() {
             )}
         </section>
         </div>
+        <section className="">
+            <h2 className="dashHeader">Ozzy's Seziure Log</h2>
+            <button>Log Seizure</button>
+            <form onSubmit={postSeizure} className="seizureForm">
+                <label>Date of Seizure: </label>
+                <input
+                className="seizureInput" 
+                type="date"
+                name="seizureDate"
+                value={seizureFormData.seizureDate}
+                onChange={seizureOnChange}
+                />
+                <label>Length of Seizure (seconds): </label>
+                <input
+                className="seizureInput" 
+                type="number"
+                name="seizureLength"
+                value={seizureFormData.seizureLength}
+                min="1"
+                max="1200"
+                onChange={seizureOnChange}
+                />
+                <label>Time of Seizure: </label>
+                <input
+                className="seizureInput"
+                type="time"
+                name="seizureTime"
+                value={seizureFormData.seizureTime}
+                onChange={seizureOnChange}
+                />
+                <label>Observations: </label>
+                <textarea 
+                className="seizureInput"
+                maxLength="150"
+                name="seizureObservation"
+                value={seizureFormData.seizureObservation}
+                onChange={seizureOnChange}
+                >Hey</textarea>
+                <button>Log Activity</button>
+            </form>
+        </section>
     </div>
   )
 }

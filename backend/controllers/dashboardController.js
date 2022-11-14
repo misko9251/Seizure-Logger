@@ -1,5 +1,6 @@
 const Dog = require('../models/Dog')
 const Medication = require('../models/Medication')
+const Seizure = require('../models/Seizure')
 
 module.exports = {
     createDog: async (req, res) => {
@@ -61,6 +62,27 @@ module.exports = {
         try {
             const medication = await Medication.find({userId: req.user._id})
             res.status(200).json({medication: medication})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    addSeizureLog: async (req, res) => {
+        try {
+            const seizure = await Seizure.create({
+                userId: req.user._id,
+                seizureDate: req.body.seizureDate,
+                seizureLength: req.body.seizureLength,
+                seizureTime: req.body.seizureTime,
+                seizureObservation: req.body.seizureObservation
+            })
+        } catch (error) {
+            
+        }
+    },
+    getSeizureLogs: async (req, res) => {
+        try {
+            const seizures = await Seizure.find({userId: req.user._id})
+            res.status(200).json({seizures: seizures})
         } catch (error) {
             console.log(error)
         }
