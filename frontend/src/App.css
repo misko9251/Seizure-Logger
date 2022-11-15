@@ -263,7 +263,6 @@ nav ul{
 /* Loaded Dashboard */
 
 .mainDashboardContainer{
-    /* height: 100vh; */
     background: linear-gradient(#C09CF9, #9198e5);
 }
 
@@ -392,15 +391,28 @@ nav ul{
     font-family: 'Rubik';
 }
 
+.openSeizureFormBtn{
+    color: black;
+    background-color: white;
+    width: 40%;
+    height: 30px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 3%;
+}
+
 /* Table */
 
-table{
+.table{
     border-collapse: collapse;
-    /* margin: 25px 0; */
-    /* margin: 5%; */
-    font-size: 0.9em;
-    min-width: 400px;
+    font-size: 0.8em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: 0 3%;
+}
+
+.tableContainer{
+    padding-bottom: 3%;
 }
 
 table thead tr {

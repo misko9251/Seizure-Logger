@@ -8,10 +8,9 @@ function LoadedDashboard() {
   
   // Create state that checks if the user would like to add additional medication to their dashboard, if so, toggle the appropriate form
   const [needMeds, setNeedMeds] = useState(null)
+  
   // Create state that checks what medication the user currently has registered with their dog
   const [currentMeds, setCurrentMeds] = useState([])
- 
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
   // Map over the current medication the user has registered, creating an element for each one
   const meds = currentMeds.map((item, index)=>{
@@ -25,8 +24,7 @@ function LoadedDashboard() {
             </div>
         </section>
     )
-  })
-  
+  }) 
 
   // Can we remove our updateMedication function by taking advantage of useEffect?
   // Maybe pass currentMeds as param and then clean up side effects? Will have to look into..
@@ -149,7 +147,8 @@ function LoadedDashboard() {
         }
     })
   }
-
+  
+  // Add seizure to database
   async function postSeizure(e){
     e.preventDefault()
     try {
@@ -167,6 +166,7 @@ function LoadedDashboard() {
     }
   }
 
+  // Update state once seizure is added to cause table to re-render
   async function updateSeizureLog(){
     try {
       const response = await fetch(
@@ -177,6 +177,13 @@ function LoadedDashboard() {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  // Create state to determine whether or not the user would like to add a seizure to their log
+  const [openSeizureLog, setOpenSeizureLog] = useState(false)
+
+  function openSeizureForm(){
+    setOpenSeizureLog((prevValue)=> !prevValue)
   }
 
   return (
@@ -246,52 +253,55 @@ function LoadedDashboard() {
             )}
         </section>
         </div>
-        <section className="">
+        <section className="seizureLogContainer">
             <h2 className="dashHeader">Ozzy's Seziure Log</h2>
-            <button>Log Seizure</button>
-            <form onSubmit={postSeizure} className="seizureForm">
-                <label>Date of Seizure: </label>
-                <input
-                className="seizureInput" 
-                type="date"
-                name="seizureDate"
-                value={seizureFormData.seizureDate}
-                onChange={seizureOnChange}
-                />
-                <label>Length of Seizure (seconds): </label>
-                <input
-                className="seizureInput" 
-                type="number"
-                name="seizureLength"
-                value={seizureFormData.seizureLength}
-                min="1"
-                max="1200"
-                onChange={seizureOnChange}
-                />
-                <label>Time of Seizure: </label>
-                <input
-                className="seizureInput"
-                type="time"
-                name="seizureTime"
-                value={seizureFormData.seizureTime}
-                onChange={seizureOnChange}
-                />
-                <label>Observations: </label>
-                <textarea 
-                className="seizureInput"
-                maxLength="150"
-                name="seizureObservation"
-                value={seizureFormData.seizureObservation}
-                onChange={seizureOnChange}
-                ></textarea>
-                <button>Log Activity</button>
-            </form>
+            <button className="openSeizureFormBtn" onClick={openSeizureForm}>Log Seizure</button>
+              {openSeizureLog === true && 
+                            <form onSubmit={postSeizure} className="seizureForm">
+                            <label>Date of Seizure: </label>
+                            <input
+                            className="seizureInput" 
+                            type="date"
+                            name="seizureDate"
+                            value={seizureFormData.seizureDate}
+                            onChange={seizureOnChange}
+                            />
+                            <label>Length of Seizure (seconds): </label>
+                            <input
+                            className="seizureInput" 
+                            type="number"
+                            name="seizureLength"
+                            value={seizureFormData.seizureLength}
+                            min="1"
+                            max="1200"
+                            onChange={seizureOnChange}
+                            />
+                            <label>Time of Seizure: </label>
+                            <input
+                            className="seizureInput"
+                            type="time"
+                            name="seizureTime"
+                            value={seizureFormData.seizureTime}
+                            onChange={seizureOnChange}
+                            />
+                            <label>Observations: </label>
+                            <textarea 
+                            className="seizureInput"
+                            maxLength="150"
+                            name="seizureObservation"
+                            value={seizureFormData.seizureObservation}
+                            onChange={seizureOnChange}
+                            ></textarea>
+                            <button>Log Activity</button>
+                        </form>
+              }
         </section>
-        <section>
+        <section class="tableContainer">
+          {/* If we have an active seizure log, render the table */}
               {seizureLog.length > 0 && 
               (
                 
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Date</th>
@@ -304,9 +314,10 @@ function LoadedDashboard() {
                 </table>
                 
               )}
+              {/* If there are no seizures currently logged, let the user know */}
               {!seizureLog.length && (
               
-                <h1>No Seizure Activity to Show</h1>
+                <h1 style={{textAlign: 'center', paddingBottom: '3%'}}>No Seizure Activity to Show</h1>
               
               )}
         </section>
