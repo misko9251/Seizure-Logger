@@ -62,11 +62,15 @@ nav ul{
 .header-image{
     display: flex;
     justify-content: center;
+    height: 20rem;
+    width: 20rem;
+    margin: 0 auto;
 }
 
+
 .header-title-h1{
-    font-size: 100px;
-    width: 80%;
+    font-size: 4rem;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -75,14 +79,15 @@ nav ul{
 }
 
 .home-page-blurb{
+    margin: 20% 10% 3% 10%;
     text-align: center;
     padding-bottom: 2rem;
-    font-size: 25px;
+    font-size: 1.2rem;
     background-color: rgb(240, 242, 243);
 }
 
 .home-page-blurb p{
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
     padding-top: 2rem;
     text-align: left;
@@ -115,11 +120,12 @@ nav ul{
 .formContainer{
     display: flex;
     justify-content: center;
-    align-items: c;
     padding-top: 5%;
     background: rgb(103, 215, 151);
     background: linear-gradient(#C09CF9, #9198e5);
-    height: 100vh
+    height: 100vh;
+    font-size: .8rem;
+    text-align: center;
 }
 
 .loadingScreen{
@@ -202,7 +208,7 @@ nav ul{
 }
 
 .enterDogForm p, .enterMedicationForm p{
-    margin: 15px 0px;
+    margin: 1rem 0px;
 }
 
 
@@ -228,7 +234,7 @@ nav ul{
 }
 
 .enterMedicationForm{
-    height: 600px;
+    height: 500px;
     margin-bottom: 50px;
 }
 

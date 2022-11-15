@@ -6,28 +6,12 @@ import Moment from 'react-moment'
 
 function LoadedDashboard() {
   
-  // Create state that checks if the user would like to add additional medication to their dashboard, if so, toggle the appropriate form
-  const [needMeds, setNeedMeds] = useState(null)
-  
   // Create state that checks what medication the user currently has registered with their dog
   const [currentMeds, setCurrentMeds] = useState([])
 
-  // Map over the current medication the user has registered, creating an element for each one
-  const meds = currentMeds.map((item, index)=>{
-    return(
-        <section key={index} className="medicationSummaryContainer">
-            <div className="faIcon"><FontAwesomeIcon icon={faPills} size='2x'/></div>
-            <div className="medicationSummary">
-                <h3 style={{fontWeight: 400}}>{item.medicationName} {item.dosage}</h3>
-                <h5 style={{fontWeight: 300}}>Prescribed on: <Moment format='MMMM Do, YYYY'>{item.prescriptionDate}</Moment></h5>
-                <h5 style={{fontWeight: 300}}>Take {item.timesPerDay} time(s) per day</h5>
-            </div>
-        </section>
-    )
-  }) 
-
   // Can we remove our updateMedication function by taking advantage of useEffect?
   // Maybe pass currentMeds as param and then clean up side effects? Will have to look into..
+  // Set our currentMeds state to all of the medications in our db
   useEffect(()=>{
     async function fetchData(){
       try {
@@ -42,13 +26,48 @@ function LoadedDashboard() {
     }
     fetchData()
   }, [])
+
+  // Map over the current medication the user has registered, creating an element for each one to render inside of our component
+  const meds = currentMeds.map((item, index)=>{
+    return(
+        <section key={index} className="medicationSummaryContainer">
+            <div className="faIcon"><FontAwesomeIcon icon={faPills} size='2x'/></div>
+            <div className="medicationSummary">
+                <h3 style={{fontWeight: 400}}>{item.medicationName} {item.dosage}</h3>
+                <h5 style={{fontWeight: 300}}>Prescribed on: <Moment format='MMMM Do, YYYY'>{item.prescriptionDate}</Moment></h5>
+                <h5 style={{fontWeight: 300}}>Take {item.timesPerDay} time(s) per day</h5>
+            </div>
+        </section>
+    )
+  }) 
   
+  // Create state that checks if the user would like to add additional medication to their dashboard, if so, toggle the appropriate form
+  const [needMeds, setNeedMeds] = useState(null)
+
   //If the user needs to add meds, the state will update and present the proper component/form
    function addMeds(){
     setNeedMeds(true)
   }
 
-  // Function to add medication if user needs to add more
+    // Set state for form to add medication
+    const [formData, setFormData] = useState({
+      medicationName: '',
+      dosage: '',
+      timesPerDay: '',
+      prescriptionDate: ''
+    }) 
+  
+    // Update our form when inputs change, we are using controlled inputs
+    function onChange(e){
+      setFormData((prevValue)=>{
+        return{
+          ...prevValue,
+          [e.target.name]: e.target.value
+        }
+      })
+    }
+
+  // Function to add (POST) medication if user needs to add more
   async function postMedication(e) {
     e.preventDefault()
     try {
@@ -60,7 +79,15 @@ function LoadedDashboard() {
         const response = await fetch('/dashboard/addMedication', formInfo)
         const data = await response.json()
         console.log(data)
+        // Close medication form after submit
         setNeedMeds(null)
+        // Clear form inputs to make them blank fields by changing the state back to empty string values
+        setFormData({
+          medicationName: '',
+          dosage: '',
+          timesPerDay: '',
+          prescriptionDate: ''
+        })
         updateMedication()
     } catch (error) {
       console.log(error)
@@ -80,25 +107,7 @@ function LoadedDashboard() {
     }
   }
 
-  // Set state for form to add medication
-  const [formData, setFormData] = useState({
-    medicationName: '',
-    dosage: '',
-    timesPerDay: '',
-    prescriptionDate: ''
-  }) 
-
-  // Update our form when inputs change
-  function onChange(e){
-    setFormData((prevValue)=>{
-      return{
-        ...prevValue,
-        [e.target.name]: e.target.value
-      }
-    })
-  }
-
-  // Create state for seizure logs
+  // Create state for seizure logs and store all logs from the db in state
   const [seizureLog, setSeizureLog] = useState([])
   
   // Get all of our seizure logs when component renders
@@ -117,6 +126,7 @@ function LoadedDashboard() {
     fetchData()
   }, [])
 
+  // Create table rows to generate a table based upon seizure activity in the db
   const tableRows = seizureLog.map((item, index)=>{
     return(
         <tbody key={index}>
@@ -160,6 +170,12 @@ function LoadedDashboard() {
         const response = await fetch('/dashboard/addSeizureLog', formInfo)
         const data = await response.json()
         console.log(data)
+        setSeizureFormData({
+          seizureDate: '',
+          seizureLength: '',
+          seizureTime: '',
+          seizureObservation: ''
+        })
         updateSeizureLog()
     } catch (error) {
       console.log(error)
@@ -296,7 +312,7 @@ function LoadedDashboard() {
                         </form>
               }
         </section>
-        <section class="tableContainer">
+        <section className="tableContainer">
           {/* If we have an active seizure log, render the table */}
               {seizureLog.length > 0 && 
               (

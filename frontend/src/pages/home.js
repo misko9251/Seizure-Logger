@@ -5,7 +5,7 @@ function Header() {
     <header className="header">
     <h1 className="header-title-h1">Whats up, Epi-Pup?</h1>
     <div className="header-image">
-        <img  src={Dog} alt="happy dog cartoon"/>
+        <img src={Dog} alt="happy dog cartoon"/>
     </div>
     <section className="home-page-blurb">
       <h2>Hey dog! Welcome to your seizure log.</h2>
