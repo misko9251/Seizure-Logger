@@ -280,7 +280,7 @@ function LoadedDashboard() {
         </div>
         <section id="seizureLogContainer" className="seizureLogContainer">
             <h2 className="dashHeader">Ozzy's Seziure Log</h2>
-            <button className="openSeizureFormBtn" onClick={openSeizureForm}>Log Seizure</button>
+            <button className="openSeizureFormBtn" onClick={openSeizureForm}>{openSeizureLog === true ? 'Close Form' : 'Log Seizure'}</button>
               {openSeizureLog === true && 
                             <form onSubmit={postSeizure} className="seizureForm">
                             <label>Date of Seizure: </label>
