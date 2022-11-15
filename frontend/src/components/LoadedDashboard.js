@@ -198,8 +198,17 @@ function LoadedDashboard() {
   // Create state to determine whether or not the user would like to add a seizure to their log
   const [openSeizureLog, setOpenSeizureLog] = useState(false)
 
+  //Open and close seizure log
   function openSeizureForm(){
     setOpenSeizureLog((prevValue)=> !prevValue)
+  }
+
+  function scrollToLog(){
+    const log = document.getElementById('seizureLogContainer')
+    log.scrollIntoView({
+      block: 'start',
+      behavior: 'smooth',
+    })
   }
 
   return (
@@ -212,7 +221,7 @@ function LoadedDashboard() {
         }}>
             <h5>Take your epilepsy care to a</h5>
             <p>powerful new level</p>
-            <button className="startTrackingBtn">Start Tracking</button>
+            <button onClick={scrollToLog}className="startTrackingBtn">Start Tracking</button>
         </header>
         <div className="dashboardMedicationContainer">
         <section className="medicationStatus">
@@ -269,7 +278,7 @@ function LoadedDashboard() {
             )}
         </section>
         </div>
-        <section className="seizureLogContainer">
+        <section id="seizureLogContainer" className="seizureLogContainer">
             <h2 className="dashHeader">Ozzy's Seziure Log</h2>
             <button className="openSeizureFormBtn" onClick={openSeizureForm}>Log Seizure</button>
               {openSeizureLog === true && 
