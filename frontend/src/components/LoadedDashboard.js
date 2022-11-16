@@ -42,9 +42,23 @@ function LoadedDashboard() {
     )
   })
   
-  function deleteMedication(id){
-    console.log(id)
+  // Delete medication from db
+  async function deleteMedication(id){
+    try {
+      const formInfo = {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({_id: id})
+    }
+        const response = await fetch(`/dashboard/deleteMedication/${id}`, formInfo)
+        const data = await response.json()
+        console.log(data)
+        setCurrentMeds((prevValue)=> prevValue.filter((item)=> item._id !== id))
+    } catch (error) {
+      console.log(error)
+    }
   }
+
   
   // Create state that checks if the user would like to add additional medication to their dashboard, if so, toggle the appropriate form
   const [needMeds, setNeedMeds] = useState(null)
@@ -83,7 +97,7 @@ function LoadedDashboard() {
     }
         const response = await fetch('/dashboard/addMedication', formInfo)
         const data = await response.json()
-        console.log(data)
+        console.log(data.medication)
         // Close medication form after submit
         setNeedMeds(null)
         // Clear form inputs to make them blank fields by changing the state back to empty string values

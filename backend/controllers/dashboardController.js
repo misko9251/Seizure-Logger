@@ -87,5 +87,14 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    deleteMedication: async (req, res) => {
+        try {
+            const id = req.params.id
+            await Medication.findByIdAndRemove(id).exec()
+            res.status(200).json({msg: 'Deleted'})
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

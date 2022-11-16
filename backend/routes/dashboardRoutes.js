@@ -10,5 +10,6 @@ router.post('/addFirstMedication', dashboardController.addFirstMedication)
 router.post('/enterDog', dashboardController.createDog)
 router.post('/addMedication', dashboardController.addMedication)
 router.post('/addSeizureLog', dashboardController.addSeizureLog)
+router.delete('/deleteMedication/:id', dashboardController.deleteMedication)
 
 module.exports = router
