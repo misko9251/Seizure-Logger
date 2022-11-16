@@ -42,9 +42,13 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Authentication routes
+// Routes
 app.use('/users', authRoutes)
 app.use('/dashboard', dashboardRoutes)
+app.get('/getUser', async (req, res)=>{
+  const user = req.isAuthenticated()
+  res.status(200).json({user: user})
+})
 
 app.listen(process.env.PORT,  () =>{
     console.log(`${process.env.PORT}`)
