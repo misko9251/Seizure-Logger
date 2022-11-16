@@ -18,6 +18,7 @@ import { useAuth } from './context/authContext';
 function App() {
 
   const { auth } = useAuth()
+  console.log(auth)
 
   return (
     <div>
@@ -25,10 +26,10 @@ function App() {
             {localStorage.auth ? <Navbar /> : <UnauthNavbar />}
               <Routes>
                 <Route path='/' element ={<Home />} />
-                <Route path='/dashboard' element ={<Dashboard />} />
+                <Route path='/dashboard' element ={localStorage.auth ? <Dashboard /> : <Home />} />
                 <Route path='/about' element={<Ourpurpose />} />
-                <Route path='/register' element={<Register />} />
-                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={!localStorage.auth ? <Register /> : <Dashboard />} />
+                <Route path='/login' element={!localStorage.auth ? <Login /> : <Dashboard />}  />
               </Routes>
             </Router>
     </div>

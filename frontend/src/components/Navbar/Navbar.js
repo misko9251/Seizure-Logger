@@ -11,9 +11,9 @@ import { useAuth } from '../../context/authContext';
 
 function Navbar() {
     // Create state to see if we have a logged in user
-      const {setAuth, user} = useAuth()
+      const {auth, setAuth} = useAuth()
 
-        // Navigate to posts after successful login
+        // Navigate after successful logout
       const navigate = useNavigate();
 
   // Redirect functions
