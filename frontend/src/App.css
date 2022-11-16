@@ -328,6 +328,15 @@ nav ul{
     box-shadow: 5px 5px 3px rgb(108, 107, 107);
 }
 
+.deleteBtn{
+    align-self: flex-start;
+    justify-self: flex-end;
+    cursor: pointer;
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .faIcon{
     display: inline-block;
     padding: 5%;

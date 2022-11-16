@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Doctor from '../images/dog-medicine.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPills } from '@fortawesome/free-solid-svg-icons'
+import { faPills, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import Moment from 'react-moment'
 
 function LoadedDashboard() {
@@ -37,9 +37,14 @@ function LoadedDashboard() {
                 <h5 style={{fontWeight: 300}}>Prescribed on: <Moment format='MMMM Do, YYYY'>{item.prescriptionDate}</Moment></h5>
                 <h5 style={{fontWeight: 300}}>Take {item.timesPerDay} time(s) per day</h5>
             </div>
+            <div className="deleteBtn" onClick={() => deleteMedication(item._id)}><FontAwesomeIcon icon={faDeleteLeft} size='1x'/></div>
         </section>
     )
-  }) 
+  })
+  
+  function deleteMedication(id){
+    console.log(id)
+  }
   
   // Create state that checks if the user would like to add additional medication to their dashboard, if so, toggle the appropriate form
   const [needMeds, setNeedMeds] = useState(null)
