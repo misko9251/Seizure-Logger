@@ -79,7 +79,7 @@ nav ul{
 }
 
 .home-page-blurb{
-    margin: 20% 10% 3% 10%;
+    margin: 15% 10% 3% 10%;
     text-align: center;
     padding-bottom: 2rem;
     font-size: 1.2rem;
@@ -87,7 +87,6 @@ nav ul{
 }
 
 .home-page-blurb p{
-    width: 100%;
     margin: 0 auto;
     padding-top: 2rem;
     text-align: left;
@@ -98,6 +97,9 @@ nav ul{
     width: 50%;
     margin: 0 auto;
     padding-bottom: 100px;
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
 }
 
 .sign-up-btn, .login-btn {
@@ -446,25 +448,6 @@ td{
 
 /* Media Queries */
 /* 
-@media all and (max-width: 1010px){
-    .dashboardHeader{
-        display: flex;
-        justify-content: flex-start;
-        background-position: bottom;
-        font-size: 2rem;
-    }
-    .dashboardHeader h5{
-        margin-top: 5%;
-    }
-    .dashboardMedicationContainer{
-        display: flex;
-        flex-direction:column;
-        align-items: center;
-    }
-    .addMedication{
-        margin-bottom: 3%;
-    }
-}
 
 @media all and (max-width: 770px){
     .dashboardHeader h5{
@@ -474,3 +457,41 @@ td{
         width: 35%;
     }
   } */
+
+@media all and (min-width: 700px){
+    .header-image{
+        height: 30rem;
+        width: 30rem;
+    }
+    .home-page-blurb{
+        margin: 10% 10% 3% 10%;
+        text-align: center;
+        padding-bottom: 2rem;
+        font-size: 1.2rem;
+        background-color: rgb(240, 242, 243);
+    }
+}
+
+@media all and (min-width: 1250px){
+    .home-page-blurb{
+        margin: 0 auto;
+        margin-top: 10%;
+        width: 60%;
+    }
+    .home-page-blurb{
+        margin: 0 auto;
+        margin-top: 10%;
+        text-align: center;
+        padding-bottom: 2rem;
+        font-size: 1.2rem;
+        background-color: rgb(240, 242, 243);
+    }
+    
+    .home-page-btn-container{
+        margin: 0 auto;
+        padding-bottom: 100px;
+        display: flex;
+        justify-content: flex-start;
+        width: 60%;
+    }
+}
