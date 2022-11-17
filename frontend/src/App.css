@@ -145,7 +145,7 @@ nav ul{
     border-radius: 10px;
     background-color: rgb(247, 209, 218);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .loginForm, .registerForm{
@@ -458,6 +458,14 @@ td{
     }
   } */
 
+@media all and (min-width: 600px){
+  .loginForm, .registerForm, .enterDogForm, .enterMedicationForm{
+      height: 450px;
+      width: 55%;
+      margin-top: 10%;
+  }
+}
+
 @media all and (min-width: 700px){
     .header-image{
         height: 30rem;
@@ -469,6 +477,22 @@ td{
         padding-bottom: 2rem;
         font-size: 1.2rem;
         background-color: rgb(240, 242, 243);
+    }
+    .loginForm, .registerForm, .enterDogForm, .enterMedicationForm{
+        height: 425px;
+        width: 40%;
+        margin-top: 0;
+    }
+}
+
+@media all and (min-width: 1000px){
+    .loginForm, .registerForm, .enterDogForm, .enterMedicationForm{
+        height: 425px;
+        width: 35%;
+        margin-top: 0;
+    }
+    .formContainer{
+        padding-top: 3%;
     }
 }
 
@@ -493,5 +517,10 @@ td{
         display: flex;
         justify-content: flex-start;
         width: 60%;
+    }
+    .loginForm, .registerForm, .enterDogForm, .enterMedicationForm{
+        height: 400px;
+        width: 30%;
+        margin-top: 0;
     }
 }
