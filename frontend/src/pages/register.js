@@ -9,15 +9,21 @@ function Register() {
     password: '',
     password2: ''
   })
-  const [loggedUser, setLoggedUser] = useState('')
 
   const [errors, setErrors] = useState([])
+
+  const errorMessages = errors.map((item, index)=>{
+    return (
+      <p style={{color: 'red'}} key={index}>{item.errorMsg}</p>
+    )
+  })
+
 
   // Navigate to posts after successful login
   const navigate = useNavigate();
 
   function redirect(){
-    navigate('/login')
+      navigate('/login')
   }
 
   function onChange(e){
@@ -31,19 +37,19 @@ function Register() {
 
   async function registerUser(e) {
     e.preventDefault()
-    try {
+
       const formInfo = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
     }
         const response = await fetch('/users/registerUser', formInfo)
-        const data = await response.json()
-        console.log(data)
-        redirect()
-    } catch (error) {
-      console.log(error)
-    }
+        const json = await response.json()
+        if(!response.ok){
+          setErrors(json)
+        }else{
+          redirect()
+        }
 }
 
   return (
@@ -51,6 +57,7 @@ function Register() {
         <form className="registerForm" onSubmit={registerUser}>
         
           <h2 className="registerHeading">Register</h2>
+          {errors.length > 0 && errorMessages}
           <input
           className="registerInput" 
           type='text'
