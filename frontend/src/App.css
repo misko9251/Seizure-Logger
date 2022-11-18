@@ -338,6 +338,9 @@ nav ul{
     box-shadow: 5px 5px 3px rgb(108, 107, 107);
 }
 
+
+
+
 .deleteBtn{
     align-self: flex-start;
     justify-self: flex-end;
@@ -373,6 +376,7 @@ nav ul{
     margin: 3%;
     padding-top: 3%;
 }
+
 
 
 .seizureForm{
@@ -551,7 +555,7 @@ td{
         margin-top: 0;
     }
     .medicationStatus{
-        /* height: 250px; */
+        height: inherit;
         padding-bottom: 3%;
     }
     .medicationSummaryContainer{
@@ -566,7 +570,7 @@ td{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: inherit;
+        /* height: inherit; */
     }
     .toggleHidden{
         display: flex;
@@ -615,5 +619,14 @@ td{
     table{
         margin: 0;
         border: 1px solid black;
+    }
+    .extraMedStyles{
+        height: 20px;
+    }
+    .extraMedStyles h3{
+        font-size: 1rem;
+    }
+    .extraMedStyles h5{
+        font-size: .8rem;
     }
 }
