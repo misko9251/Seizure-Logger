@@ -283,7 +283,6 @@ nav ul{
     flex-direction: column;
     justify-content: flex-start;
     font-size: 2rem;
-    margin-bottom: 5%;
 }
 
 .dashboardHeader h5{
@@ -318,6 +317,15 @@ nav ul{
     justify-content: center;
 }
 
+.medicationStatus{
+    height: 200px;
+    padding-bottom: 3%;
+}
+
+.toggleHidden{
+    display: none;
+}
+
 .medicationSummaryContainer{
     display: flex;
     align-items: center;
@@ -326,7 +334,7 @@ nav ul{
     width: 80%;
     background: white;
     margin: 0 auto;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     box-shadow: 5px 5px 3px rgb(108, 107, 107);
 }
 
@@ -363,6 +371,7 @@ nav ul{
 .dashHeader{
     text-align: center;
     margin: 3%;
+    padding-top: 3%;
 }
 
 
@@ -425,7 +434,7 @@ nav ul{
     border-collapse: collapse;
     font-size: 0.8em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    margin: 0 3%;
+    margin: 0 auto;
 }
 
 .tableContainer{
@@ -446,18 +455,8 @@ td{
     background: white;
 }
 
-/* Media Queries */
-/* 
 
-@media all and (max-width: 770px){
-    .dashboardHeader h5{
-        margin-top: 10%;
-    }
-    .startTrackingBtn{
-        width: 35%;
-    }
-  } */
-
+/* Media Queries for homepage, login, and registration pages */
 @media all and (min-width: 600px){
   .loginForm, .registerForm, .enterDogForm, .enterMedicationForm{
       height: 450px;
@@ -522,5 +521,99 @@ td{
         height: 400px;
         width: 30%;
         margin-top: 0;
+    }
+}
+
+/* Media queries for dashboard */
+
+@media all and (min-width: 475px){
+    .dashboardHeader h5{
+        font-weight: 300;
+        margin: 5% 0 1% 8%;
+    }
+    .dashboardHeader p{
+        font-weight: 800;
+        margin: 0 0 2% 8%;
+    }
+    .deleteBtn{
+        flex-grow: 1;
+    }
+}
+
+@media all and (min-width: 550px){
+    .medicationSummary h3{
+        font-size: 1.5rem;
+    }
+    .medicationSummary h5{
+        font-size: 1rem;
+    }
+    .dashHeader{
+        margin-top: 0;
+    }
+    .medicationStatus{
+        height: 250px;
+        padding-bottom: 3%;
+    }
+    .medicationSummaryContainer{
+        height: 80px;
+        padding: 30px;
+    }
+}
+
+@media all and (min-width: 1000px){
+    .medicationStatus{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: inherit;
+    }
+    .toggleHidden{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 50%;
+        object-fit: cover;
+        height: inherit;
+    }
+   .toggleHidden img{
+        /* height: 250px; */
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+   }
+    .toggleHiddenContainer{
+        display: flex;
+    }
+    .dashboardHeader h5{
+        font-weight: 300;
+        font-size: 3rem;
+        margin: 5% 0 1% 4%;
+    }
+    .dashboardHeader p{
+        font-weight: 800;
+        font-size: 3rem;
+        margin: 0 0 2% 4%;
+    }
+    .startTrackingBtn{
+        width: 30%;
+        margin: 0 0 1% 4%;
+    }
+    .addMedication{
+        background: rgb(165, 154, 234);
+        border: none;
+    }
+    .seizureLogContainer, .tableContainer{
+        background: rgb(245, 242, 242);
+    }
+    .openSeizureFormBtn{
+        margin-bottom: 0;
+    }
+    .tableContainer{
+        padding-top: 3%;
+    }
+    table{
+        margin: 0;
+        border: 1px solid black;
     }
 }

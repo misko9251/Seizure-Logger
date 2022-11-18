@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Doctor from '../images/dog-medicine.png'
+import HappyDog from '../images/happydog.png'
+import DogPark from '../images/dog-medicine2.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPills, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import Moment from 'react-moment'
@@ -243,59 +245,69 @@ function LoadedDashboard() {
             <button onClick={scrollToLog}className="startTrackingBtn">Start Tracking</button>
         </header>
         <div className="dashboardMedicationContainer">
-        <section className="medicationStatus">
-            <h2 className="dashHeader">Ozzy's Medication</h2>
-                {meds}
-        </section>
-        <section className="addMedication">
-            {needMeds && (
-                <>
-                    <form className="addOneMed" onSubmit={postMedication}>
-                      <h1>Add a medication below!</h1>
-                      <input
-                      className="medicationInput" 
-                      type="text"
-                      name="medicationName"
-                      placeholder="Your dog's medication"
-                      value={formData.medicationName}
-                      onChange={onChange}
-                      />
-                      <input
-                      className="medicationInput" 
-                      type="text"
-                      name="dosage"
-                      placeholder="Dosage (Example: 120mg)"
-                      value={formData.dosage}
-                      onChange={onChange}
-                      />
-                      <input
-                      className="medicationInput" 
-                      type="text"
-                      name="timesPerDay"
-                      placeholder="Frequency (Times per day)"
-                      value={formData.timesPerDay}
-                      onChange={onChange}
-                      />
-                      <input
-                      className="dateInput" 
-                      type="date"
-                      name="prescriptionDate"
-                      placeholder="Date Prescribed"
-                      value={formData.prescriptionDate}
-                      onChange={onChange}
-                      />
-                      <button className="addOneMedBtn">Add</button>
-                    </form>
-                </>
-            )}
-            {!needMeds && (
-                <>
-                    <h2>Adding more medication?</h2>
-                    <p>Click below to add more medication.</p>
-                    <button className="addOneMedBtn" onClick={addMeds}>Add Meds</button>
-                </>
-            )}
-        </section>
+        <div className="toggleHiddenContainer">
+            <section className="medicationStatus">
+                <h2 className="dashHeader">Ozzy's Medication</h2>
+                    {meds}
+            </section>
+            <section className="toggleHidden">
+              <img src={HappyDog} />
+            </section>
+        </div>
+        <div className="toggleHiddenContainer">
+          <section className="toggleHidden">
+              <img src={DogPark} />
+            </section>
+            <section className="medicationStatus addMedication">
+                {needMeds && (
+                    <>
+                        <form className="addOneMed" onSubmit={postMedication}>
+                          <h1>Add a medication below!</h1>
+                          <input
+                          className="medicationInput" 
+                          type="text"
+                          name="medicationName"
+                          placeholder="Your dog's medication"
+                          value={formData.medicationName}
+                          onChange={onChange}
+                          />
+                          <input
+                          className="medicationInput" 
+                          type="text"
+                          name="dosage"
+                          placeholder="Dosage (Example: 120mg)"
+                          value={formData.dosage}
+                          onChange={onChange}
+                          />
+                          <input
+                          className="medicationInput" 
+                          type="text"
+                          name="timesPerDay"
+                          placeholder="Frequency (Times per day)"
+                          value={formData.timesPerDay}
+                          onChange={onChange}
+                          />
+                          <input
+                          className="dateInput" 
+                          type="date"
+                          name="prescriptionDate"
+                          placeholder="Date Prescribed"
+                          value={formData.prescriptionDate}
+                          onChange={onChange}
+                          />
+                          <button className="addOneMedBtn">Add</button>
+                        </form>
+                    </>
+                )}
+                {!needMeds && (
+                    <>
+                        <h2>Adding more medication?</h2>
+                        <p>Click below to add more medication.</p>
+                        <button className="addOneMedBtn" onClick={addMeds}>Add Meds</button>
+                    </>
+                )}
+            </section>
+        </div>
         </div>
         <section id="seizureLogContainer" className="seizureLogContainer">
             <h2 className="dashHeader">Ozzy's Seziure Log</h2>
