@@ -413,6 +413,7 @@ nav ul{
 }
 
 .openSeizureFormBtn{
+    cursor: pointer;
     color: black;
     background-color: white;
     width: 40%;
