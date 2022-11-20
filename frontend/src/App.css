@@ -427,6 +427,7 @@ nav ul{
 /* Table */
 
 .table{
+    width: 90%;
     border-collapse: collapse;
     font-size: 0.8em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -534,6 +535,9 @@ td{
     .deleteBtn{
         flex-grow: 1;
     }
+    table{
+        width: 86%;
+    }
 }
 
 @media all and (min-width: 550px){
@@ -556,6 +560,14 @@ td{
     .medicationSummaryContainer{
         height: 80px;
         padding: 30px;
+    }
+    .seizureForm{
+        margin-top: 3%;
+        width: 50%;
+        margin-bottom: 3%;
+    }
+    table{
+        width: 56%;
     }
 }
 
@@ -606,6 +618,9 @@ td{
     }.seizureLogContainer, .tableContainer{
         background: rgb(245, 242, 242);
     }
+    .seizureLogContainer{
+        padding-bottom: 1%;
+    }
     .openSeizureFormBtn{
         margin-bottom: 0;
     }
@@ -644,5 +659,13 @@ td{
     .faIcon{
         font-size: 0.6rem;
         padding: 1px;
+    }
+    .seizureForm{
+        margin-top: 3%;
+        width: 50%;
+        margin-bottom: 0;
+    }
+    table{
+        width: 56%;
     }
 }
