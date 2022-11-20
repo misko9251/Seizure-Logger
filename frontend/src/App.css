@@ -390,15 +390,6 @@ nav ul{
     margin-bottom: 3%;
 }
 
-
-
-
-
-
-
-
-
-
 .addOneMed{
     display: flex;
     flex-direction: column;
@@ -608,9 +599,10 @@ td{
     }
     .addMedication{
         background: rgb(165, 154, 234);
+        margin: auto 0;
         border: none;
-    }
-    .seizureLogContainer, .tableContainer{
+
+    }.seizureLogContainer, .tableContainer{
         background: rgb(245, 242, 242);
     }
     .openSeizureFormBtn{
@@ -631,5 +623,25 @@ td{
     }
     .extraMedStyles h5{
         font-size: .8rem;
+    }
+    .flexBoxMedicationContainer{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .flexBoxMedicationContainer > section {
+        padding-left: 3%;
+        padding-right: 3%;
+        width: 35%;
+    }
+    .flexBoxMedicationContainer h3{
+        font-size: 0.9rem;
+    }
+    .flexBoxMedicationContainer h5{
+        font-size: 0.7rem;
+    }
+    .faIcon{
+        font-size: 0.6rem;
+        padding: 1px;
     }
 }

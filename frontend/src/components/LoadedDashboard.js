@@ -31,10 +31,11 @@ function LoadedDashboard() {
 
   // Map over the current medication the user has registered, creating an element for each one to render inside of our component
   const meds = currentMeds.map((item, index)=>{
+    
     return(
         <section key={index} className={currentMeds.length > 1 ? 'extraMedStyles medicationSummaryContainer' : 'medicationSummaryContainer'}>
             <div className="faIcon"><FontAwesomeIcon icon={faPills} size='2x'/></div>
-            <div className="medicationSummary">
+            <div className='medicationSummary'>
                 <h3 style={{fontWeight: 400}}>{item.medicationName} {item.dosage}</h3>
                 <h5 style={{fontWeight: 300}}>Prescribed on: <Moment format='MMMM Do, YYYY'>{item.prescriptionDate}</Moment></h5>
                 <h5 style={{fontWeight: 300}}>Take {item.timesPerDay} time(s) per day</h5>
@@ -248,7 +249,9 @@ function LoadedDashboard() {
         <div className="toggleHiddenContainer">
             <section className='medicationStatus'>
                 <h2 style={{textAlign: 'center', margin: '3% 0'}}>Ozzy's Medication</h2>
-                    {meds}
+                    <div className={currentMeds.length >= 3 ? 'flexBoxMedicationContainer' : ''}>
+                     {meds}
+                    </div>
             </section>
             <section className="toggleHidden">
               <img src={HappyDog} />
