@@ -558,6 +558,9 @@ td{
         height: inherit;
         padding-bottom: 3%;
     }
+    .addMedication{
+        height: 200px;
+    }
     .medicationSummaryContainer{
         height: 80px;
         padding: 30px;
