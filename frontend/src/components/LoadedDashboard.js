@@ -7,6 +7,25 @@ import { faPills, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import Moment from 'react-moment'
 
 function LoadedDashboard() {
+
+  // Create state to keep track of what dogs dashboard should load
+  const [getDog, setGetDog] = useState('')
+
+  useEffect(()=>{
+    async function fetchData(){
+      try {
+        const response = await fetch(
+          '/dashboard/getDog'
+        );
+        const json = await response.json()
+        setGetDog(json.dog[0].dogName[0].toUpperCase() +json.dog[0].dogName.slice(1).toLowerCase() )
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  })
+
   
   // Create state that checks what medication the user currently has registered with their dog
   const [currentMeds, setCurrentMeds] = useState([])
@@ -248,7 +267,7 @@ function LoadedDashboard() {
         <div className="dashboardMedicationContainer">
         <div className="toggleHiddenContainer">
             <section className='medicationStatus'>
-                <h2 style={{textAlign: 'center', margin: '3% 0'}}>Ozzy's Medication</h2>
+                <h2 style={{textAlign: 'center', margin: '3% 0'}}>{getDog}'s Medication</h2>
                     <div className={currentMeds.length >= 3 ? 'flexBoxMedicationContainer' : ''}>
                      {meds}
                     </div>
@@ -313,7 +332,7 @@ function LoadedDashboard() {
         </div>
         </div>
         <section id="seizureLogContainer" className="seizureLogContainer">
-            <h2 className="dashHeader">Ozzy's Seziure Log</h2>
+            <h2 className="dashHeader">{getDog}'s Seziure Log</h2>
             <button className="openSeizureFormBtn" onClick={openSeizureForm}>{openSeizureLog === true ? 'Close Form' : 'Log Seizure'}</button>
               {openSeizureLog === true && 
                             <form onSubmit={postSeizure} className="seizureForm">
