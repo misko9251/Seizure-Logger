@@ -44,7 +44,12 @@ function App() {
             {localStorage.auth ? <>
                                   <Navbar />
                                   <AuthenticatedMobileNavbar />
-                                </>  : <UnauthNavbar />}
+                                </>  : 
+                                <>
+                                  <UnauthNavbar />
+                                  <MobileNavbar />
+                                </>
+                                }
               <Routes>
                 <Route path='/' element ={<Home />} />
                 <Route path='/dashboard' element ={localStorage.auth ? <Dashboard /> : <Login />} />
