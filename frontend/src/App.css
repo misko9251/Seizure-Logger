@@ -688,4 +688,18 @@ td{
         right: 5%;
         color: white;
     }
+    .mobileUnorderedList{
+        border-top: 2px solid white;
+        background: rgb(94, 94, 95);
+        position: absolute;
+        top: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3% 0;
+        font-size: 1.5rem;
+    }
+    .mobileUnorderedList li{
+        padding: 10px 0;
+    }
 }
