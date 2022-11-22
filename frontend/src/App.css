@@ -669,3 +669,23 @@ td{
         width: 56%;
     }
 }
+
+.mobileAuthNav{
+    display: none;
+}
+
+/* Navbars */
+
+@media(max-width: 600px){
+    .mobileAuthNav{
+        display: flex;
+    }
+    .navBar{
+        display: none;
+    }
+    .hamburger{
+        position: absolute;
+        right: 5%;
+        color: white;
+    }
+}

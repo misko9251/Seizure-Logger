@@ -6,6 +6,8 @@ import Register from './pages/register'
 import Home from './pages/home'
 import Dashboard from './pages/dashboard'
 import Login from './pages/login'
+import MobileNavbar from './components/Navbar/MobileNavbar';
+import AuthenticatedMobileNavbar from './components/Navbar/AuthenticatedMobileNavbar';
 import {
   BrowserRouter as Router,
   Route,
@@ -39,7 +41,10 @@ function App() {
   return (
     <div>
         <Router>
-            {localStorage.auth ? <Navbar /> : <UnauthNavbar />}
+            {localStorage.auth ? <>
+                                  <Navbar />
+                                  <AuthenticatedMobileNavbar />
+                                </>  : <UnauthNavbar />}
               <Routes>
                 <Route path='/' element ={<Home />} />
                 <Route path='/dashboard' element ={localStorage.auth ? <Dashboard /> : <Login />} />
