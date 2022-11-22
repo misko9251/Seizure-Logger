@@ -679,6 +679,9 @@ td{
 @media(max-width: 600px){
     .mobileAuthNav{
         display: flex;
+        width: 100%;
+        position: sticky;
+        top: 0;
     }
     .navBar{
         display: none;
@@ -686,18 +689,22 @@ td{
     .hamburger{
         position: absolute;
         right: 5%;
-        color: white;
+        color: black;
+        font-weight: 200;
     }
     .mobileUnorderedList{
         border-top: 2px solid white;
-        background: rgb(94, 94, 95);
+        background: rgb(192, 156, 249);
+        background-color: white;
         position: absolute;
+        left: 0;
         top: 70px;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 3% 0;
         font-size: 1.5rem;
+        transition: 0.3ms;
     }
     .mobileUnorderedList li{
         padding: 10px 0;

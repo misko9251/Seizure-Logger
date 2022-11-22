@@ -6,7 +6,7 @@ import {
     useNavigate
   } from "react-router-dom";
 import { useAuth } from '../../context/authContext';
-import {TiThMenuOutline} from 'react-icons/ti'
+import {AiOutlineMenu} from 'react-icons/ai'
 import {AiOutlineClose} from 'react-icons/ai'
 
 function AuthenticatedMobileNavbar() {
@@ -40,7 +40,7 @@ function AuthenticatedMobileNavbar() {
         }
       }
     
-  const hamburger = <TiThMenuOutline fontSize='40px' 
+  const hamburger = <AiOutlineMenu fontSize='40px' 
   className='hamburger'
   onClick={()=> setOpen(!open)}
   />
@@ -54,18 +54,19 @@ function AuthenticatedMobileNavbar() {
     <nav className='mobileAuthNav'>
         {!open && hamburger}
         {open && closeHamburger}
+    <h2 style={{color: 'black', fontWeight: '200', marginLeft: '10%'}}>Epilepsy Pups</h2>
     {open &&
     <ul className='mobileUnorderedList'>
-        <li>
+        <li onClick={()=> setOpen(false)}>
           <Link className="nav-link" style={{ textDecoration: 'none' }} to="/">HOME</Link>
         </li>
-        <li>
+        <li onClick={()=> setOpen(false)}>
             <Link className="nav-link" style={{ textDecoration: 'none' }} to="/ourpurpose">OUR PURPOSE</Link>
         </li>
-        <li>
+        <li onClick={()=> setOpen(false)}>
             <Link className="nav-link" style={{ textDecoration: 'none' }} to="/dashboard">DASHBOARD</Link>
         </li>
-        <li>
+        <li onClick={()=> setOpen(false)}>
             <Link onClick={logout} className="nav-link logout-btn" style={{ textDecoration: 'none' }}>LOG OUT</Link>
         </li>            
     </ul>}
