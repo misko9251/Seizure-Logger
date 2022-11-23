@@ -50,6 +50,6 @@ app.get('/getUser', async (req, res)=>{
   res.status(200).json({user: user})
 })
 
-app.listen(process.env.PORT,  () =>{
+app.listen(process.env.PORT || 2121,  () =>{
     console.log(`${process.env.PORT}`)
 })
