@@ -28,6 +28,7 @@ function MobileNavbar() {
     <nav className='mobileAuthNav'>
         {!open && hamburger}
         {open && closeHamburger}
+     <h2 style={{color: 'black', fontWeight: '200', marginLeft: '10%'}}>Epilepsy Pups</h2>
     {open &&     
     
     <ul className="mobileUnorderedList">
