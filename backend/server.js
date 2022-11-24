@@ -24,7 +24,7 @@ app.use(express.json());    // use express to parse json data
 
 app.use(
   cors({
-    origin: "https://whats-up-epi-pup.herokuapp.com/", // <-- location of the react app were connecting to
+    origin: "http://localhost:3000", // <-- location of the react app were connecting to
     credentials: true,
   })
 );
