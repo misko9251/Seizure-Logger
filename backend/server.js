@@ -18,6 +18,8 @@ require('./config/passport')(passport)
 
 connectDB()
 
+app.set('trust proxy', true);
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));    // use express to parse the form data
 app.use(express.json());    // use express to parse json data
@@ -36,7 +38,11 @@ app.use(
         secret: 'keyboardcat', // set the secret key for the session
         resave: false,  // don't save session if unmodified
         saveUninitialized: false,   // don't create session until something stored
-        store: MongoStore.create({mongoUrl:process.env.MONGO_STRING})
+        store: MongoStore.create({mongoUrl:process.env.MONGO_STRING}),
+        cookie: {
+          sameSite: 'none',
+          secure: true,
+        }
     }))
 
 // Set passport middleware
