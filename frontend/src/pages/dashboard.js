@@ -40,23 +40,19 @@ function Dashboard() {
       fetchData()
     }, [])
 
-  //   if(createDog === false){
-  //     return <CreateDog />
-  //   }if(createDog === true && medication === false){
-  //     return <Medication />
-  //   }if(createDog === true && medication === true){
-  //     return <LoadedDashboard />
-  //   }else{
-  //     return (
-  //       <div className="loadingScreen">
-  //         <span className="loader"></span>
-  //       </div>
-  //     )
-  //   }
-    
-    return(
-      <LoadedDashboard />
-    )
+    if(createDog === false){
+      return <CreateDog />
+    }if(createDog === true && medication === false){
+      return <Medication />
+    }if(createDog === true && medication === true){
+      return <LoadedDashboard />
+    }else{
+      return (
+        <div className="loadingScreen">
+          <span className="loader"></span>
+        </div>
+      )
+    }
 
 }
 
