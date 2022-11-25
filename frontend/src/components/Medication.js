@@ -23,11 +23,12 @@ function Medication() {
   async function postMedication(e) {
     try {
       const formInfo = {
+        credentials: 'include',
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({medicationName: formData.medicationName, dosage: formData.dosage, timesPerDay: formData.timesPerDay, prescriptionDate: formData.prescriptionDate})
     }
-        const response = await fetch('/dashboard/addFirstMedication', formInfo)
+        const response = await fetch('https://whats-up-epi-pup.herokuapp.com/dashboard/addFirstMedication', formInfo)
         const data = await response.json()
     } catch (error) {
       console.log(error)

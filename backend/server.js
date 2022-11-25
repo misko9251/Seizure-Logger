@@ -24,8 +24,9 @@ app.use(express.json());    // use express to parse json data
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // <-- location of the react app were connecting to
+    origin: (origin, cb) => cb(null, origin), // <-- location of the react app were connecting to
     credentials: true,
+    methods: ['GET','POST', 'PUT', 'DELETE', 'OPTIONS']
   })
 );
 
@@ -46,7 +47,7 @@ app.use(passport.session())
 app.use('/users', authRoutes)
 app.use('/dashboard', dashboardRoutes)
 app.get('/getUser', async (req, res)=>{
-  const user = req.isAuthenticated()
+  const user = req.user
   res.status(200).json({user: user})
 })
 

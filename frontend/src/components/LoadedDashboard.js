@@ -15,7 +15,8 @@ function LoadedDashboard() {
     async function fetchData(){
       try {
         const response = await fetch(
-          '/dashboard/getDog'
+          'https://whats-up-epi-pup.herokuapp.com/dashboard/getDog',
+          {credentials: 'include'}
         );
         const json = await response.json()
         setGetDog(json.dog[0].dogName[0].toUpperCase() +json.dog[0].dogName.slice(1).toLowerCase() )
@@ -37,7 +38,8 @@ function LoadedDashboard() {
     async function fetchData(){
       try {
         const response = await fetch(
-          '/dashboard/getAllMedication'
+          'https://whats-up-epi-pup.herokuapp.com/dashboard/getAllMedication',
+          {credentials: 'include'}
         );
         const json = await response.json()
         setCurrentMeds(json.medication)
@@ -68,11 +70,12 @@ function LoadedDashboard() {
   async function deleteMedication(id){
     try {
       const formInfo = {
+        credentials: 'include',
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({_id: id})
     }
-        const response = await fetch(`/dashboard/deleteMedication/${id}`, formInfo)
+        const response = await fetch(`https://whats-up-epi-pup.herokuapp.com/dashboard/deleteMedication/${id}`, formInfo)
         const data = await response.json()
         console.log(data)
         setCurrentMeds((prevValue)=> prevValue.filter((item)=> item._id !== id))
@@ -113,11 +116,12 @@ function LoadedDashboard() {
     e.preventDefault()
     try {
       const formInfo = {
+        credentials: 'include',
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({medicationName: formData.medicationName, dosage: formData.dosage, timesPerDay: formData.timesPerDay, prescriptionDate: formData.prescriptionDate})
     }
-        const response = await fetch('/dashboard/addMedication', formInfo)
+        const response = await fetch('https://whats-up-epi-pup.herokuapp.com/dashboard/addMedication', formInfo)
         const data = await response.json()
         console.log(data.medication)
         // Close medication form after submit
@@ -139,7 +143,8 @@ function LoadedDashboard() {
   async function updateMedication(){
     try {
       const response = await fetch(
-        '/dashboard/getAllMedication'
+        'https://whats-up-epi-pup.herokuapp.com/dashboard/getAllMedication',
+        {credentials: 'include'}
       );
       const json = await response.json()
       setCurrentMeds(json.medication)
@@ -156,7 +161,8 @@ function LoadedDashboard() {
     async function fetchData(){
       try {
         const response = await fetch(
-          '/dashboard/getSeizureLogs'
+          'https://whats-up-epi-pup.herokuapp.com/dashboard/getSeizureLogs',
+          {credentials: 'include'}
         );
         const json = await response.json()
         setSeizureLog(json.seizures)
@@ -204,11 +210,12 @@ function LoadedDashboard() {
     e.preventDefault()
     try {
       const formInfo = {
+        credentials: 'include',
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({seizureDate: seizureFormData.seizureDate, seizureLength: seizureFormData.seizureLength, seizureTime: seizureFormData.seizureTime, seizureObservation: seizureFormData.seizureObservation})
     }
-        const response = await fetch('/dashboard/addSeizureLog', formInfo)
+        const response = await fetch('https://whats-up-epi-pup.herokuapp.com/dashboard/addSeizureLog', formInfo)
         const data = await response.json()
         console.log(data)
         setSeizureFormData({
@@ -227,7 +234,8 @@ function LoadedDashboard() {
   async function updateSeizureLog(){
     try {
       const response = await fetch(
-        '/dashboard/getSeizureLogs'
+        'https://whats-up-epi-pup.herokuapp.com/dashboard/getSeizureLogs',
+        {credentials: 'include'}
       );
       const json = await response.json()
       setSeizureLog(json.seizures)

@@ -12,7 +12,8 @@ function Dashboard() {
       async function fetchData(){
         try {
           const response = await fetch(
-            '/dashboard/getDog'
+            'https://whats-up-epi-pup.herokuapp.com/dashboard/getDog',
+            {credentials: 'include'}
           );
           const json = await response.json()
           json.dog.length > 0 ? setCreateDog(true) : setCreateDog(false)
@@ -27,7 +28,8 @@ function Dashboard() {
       async function fetchData(){
         try {
           const response = await fetch(
-            '/dashboard/getFirstMedication'
+            'https://whats-up-epi-pup.herokuapp.com/dashboard/getFirstMedication',
+            {credentials: 'include'}
           );
           const json = await response.json()
           json.medication.length > 0 ? setMedication(true) : setMedication(false)
@@ -38,20 +40,25 @@ function Dashboard() {
       fetchData()
     }, [])
 
-    if(createDog === false){
-      return <CreateDog />
-    }if(createDog === true && medication === false){
-      return <Medication />
-    }if(createDog === true && medication === true){
-      return <LoadedDashboard />
-    }else{
-      return (
-        <div className="loadingScreen">
-          <span className="loader"></span>
-        </div>
-      )
-    }
+  //   if(createDog === false){
+  //     return <CreateDog />
+  //   }if(createDog === true && medication === false){
+  //     return <Medication />
+  //   }if(createDog === true && medication === true){
+  //     return <LoadedDashboard />
+  //   }else{
+  //     return (
+  //       <div className="loadingScreen">
+  //         <span className="loader"></span>
+  //       </div>
+  //     )
+  //   }
     
-  }
+    return(
+      <LoadedDashboard />
+    )
+
+}
+
 
 export default Dashboard

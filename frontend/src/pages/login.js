@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import {useAuth} from '../context/authContext'
+import Axios from 'axios'
 
 function Login() {
 
@@ -39,15 +40,17 @@ function Login() {
     e.preventDefault()
     try {
       const formInfo = {
+        credentials: 'include',
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: formData.username, password: formData.password})
     }
-        const response = await fetch('/users/login', formInfo)
+        const response = await fetch('https://whats-up-epi-pup.herokuapp.com/users/login', formInfo)
         const data = await response.json()
+        console.log(data)
         setAuth(true)
         window.localStorage.setItem('auth', true);
-        redirect()
+        // redirect()
     } catch (error) {
       console.log(error)
     }

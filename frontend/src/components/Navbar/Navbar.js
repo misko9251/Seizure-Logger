@@ -25,7 +25,8 @@ function Navbar() {
       async function logout(){
         try {
           const response = await fetch(
-            '/users/logout'
+            'https://whats-up-epi-pup.herokuapp.com/users/logout',
+            {credentials: 'include'}
           );
           const json = await response.json()
           setAuth(false)
