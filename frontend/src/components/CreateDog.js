@@ -25,7 +25,7 @@ function CreateDog() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({dogName: formData.dogName})
     }
-        const response = await fetch('https://whats-up-epi-pup.herokuapp.com/dashboard/enterDog', formInfo)
+        const response = await fetch('https://api.epipup.com/dashboard/enterDog', formInfo)
         const data = await response.json()
         window.localStorage.setItem('dog', true);
     } catch (error) {

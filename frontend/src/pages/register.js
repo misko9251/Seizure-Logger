@@ -44,7 +44,7 @@ function Register() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
     }
-        const response = await fetch('https://whats-up-epi-pup.herokuapp.com/users/registerUser', formInfo)
+        const response = await fetch('https://api.epipup.com/users/registerUser', formInfo)
         const json = await response.json()
         if(!response.ok){
           setErrors(json)

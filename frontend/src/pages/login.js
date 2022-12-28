@@ -45,7 +45,7 @@ function Login() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: formData.username, password: formData.password})
     }
-        const response = await fetch('https://whats-up-epi-pup.herokuapp.com/users/login', formInfo)
+        const response = await fetch('https://api.epipup.com/users/login', formInfo)
         const data = await response.json()
         console.log(data)
         setAuth(true)

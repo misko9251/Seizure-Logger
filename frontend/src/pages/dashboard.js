@@ -12,7 +12,7 @@ function Dashboard() {
       async function fetchData(){
         try {
           const response = await fetch(
-            'https://whats-up-epi-pup.herokuapp.com/dashboard/getDog',
+            'https://api.epipup.com/dashboard/getDog',
             {credentials: 'include'}
           );
           const json = await response.json()
@@ -28,7 +28,7 @@ function Dashboard() {
       async function fetchData(){
         try {
           const response = await fetch(
-            'https://whats-up-epi-pup.herokuapp.com/dashboard/getFirstMedication',
+            'https://api.epipup.com/getFirstMedication',
             {credentials: 'include'}
           );
           const json = await response.json()
