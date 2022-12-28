@@ -27,9 +27,9 @@ function Login() {
   const navigate = useNavigate();
 
   // // Redirect functions
-  // function redirect(){
-  //   navigate('/dashboard')
-  // }
+  function redirect(){
+    navigate('/dashboard')
+  }
   
   function redirectToRegister(){
     navigate('/register')
@@ -50,6 +50,7 @@ function Login() {
         console.log(data)
         setAuth(true)
         window.localStorage.setItem('auth', true);
+        redirect()
     } catch (error) {
       console.log(error)
     }
