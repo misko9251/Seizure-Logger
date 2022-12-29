@@ -24,15 +24,13 @@ app.set('trust proxy', true);
 app.use(express.urlencoded({ extended: true }));    // use express to parse the form data
 app.use(express.json());    // use express to parse json data
 
-// app.use(
-//   cors({
-//     origin: (origin, cb) => cb(null, origin), // <-- location of the react app were connecting to
-//     credentials: true,
-//     methods: ['GET','POST', 'PUT', 'DELETE', 'OPTIONS']
-//   })
-// );
-
-app.use(cors())
+app.use(
+  cors({
+    origin: (origin, cb) => cb(null, origin), // <-- location of the react app were connecting to
+    credentials: true,
+    methods: ['GET','POST', 'PUT', 'DELETE', 'OPTIONS']
+  })
+);
 
 // Store sessions as cookies
 app.use(
